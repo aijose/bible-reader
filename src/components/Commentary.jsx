@@ -86,9 +86,9 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
   return (
     <>
       {/* Full Width Commentary */}
-      <div className={`fixed inset-0 bg-gray-50 transform transition-transform duration-300 z-20 ${
+      <div className={`fixed inset-0 bg-gray-50 transform transition-transform duration-300 z-20 flex flex-col ${
         isOpen ? 'translate-y-0' : 'translate-y-full'
-      }`} style={{ width: '100vw', minWidth: '100vw' }}>
+      }`} style={{ width: '100vw', minWidth: '100vw', height: '100vh' }}>
       
       {/* Header */}
       <div className="bg-white border-b border-gray-200 p-4 w-full">
@@ -112,7 +112,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       </div>
       
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-4 w-full">
+      <div className="flex-1 overflow-y-auto p-4 w-full min-h-0">
         {!selectedVerse ? (
           <div className="flex items-center justify-center h-64 text-gray-500">
             <div className="text-center">
