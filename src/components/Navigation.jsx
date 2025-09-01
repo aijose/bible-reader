@@ -37,23 +37,29 @@ function Navigation({
   onChapterChange,
   bibleData 
 }) {
-  const currentBookData = currentBook ? NT_BOOKS.find(b => b.key === currentBook) : null;
-  const maxChapter = currentBookData?.chapters || 1;
+  const currentBookData = currentBook ? bibleData?.books?.[currentBook] : null;
+  const maxChapter = currentBookData ? Object.keys(currentBookData.chapters || {}).length : 1;
   
   const isBookAvailable = (bookKey) => {
-    return bibleData?.books?.[bookKey] ? true : false;
+    const book = bibleData?.books?.[bookKey];
+    return book && book.metadata.verses > 0;
   };
   
   const handlePrevChapter = () => {
     if (currentChapter > 1) {
       onChapterChange(currentChapter - 1);
     } else if (currentBook) {
-      // Go to previous book's last chapter
+      // Go to previous available book's last chapter
       const currentIndex = NT_BOOKS.findIndex(b => b.key === currentBook);
-      if (currentIndex > 0) {
-        const prevBook = NT_BOOKS[currentIndex - 1];
-        onBookChange(prevBook.key);
-        onChapterChange(prevBook.chapters);
+      for (let i = currentIndex - 1; i >= 0; i--) {
+        const prevBook = NT_BOOKS[i];
+        if (isBookAvailable(prevBook.key)) {
+          const prevBookData = bibleData?.books?.[prevBook.key];
+          const lastChapter = prevBookData ? Object.keys(prevBookData.chapters || {}).length : 1;
+          onBookChange(prevBook.key);
+          onChapterChange(lastChapter);
+          break;
+        }
       }
     }
   };
@@ -62,21 +68,26 @@ function Navigation({
     if (currentChapter < maxChapter) {
       onChapterChange(currentChapter + 1);
     } else if (currentBook) {
-      // Go to next book's first chapter
+      // Go to next available book's first chapter
       const currentIndex = NT_BOOKS.findIndex(b => b.key === currentBook);
-      if (currentIndex < NT_BOOKS.length - 1) {
-        const nextBook = NT_BOOKS[currentIndex + 1];
-        onBookChange(nextBook.key);
-        onChapterChange(1);
+      for (let i = currentIndex + 1; i < NT_BOOKS.length; i++) {
+        const nextBook = NT_BOOKS[i];
+        if (isBookAvailable(nextBook.key)) {
+          onBookChange(nextBook.key);
+          onChapterChange(1);
+          break;
+        }
       }
     }
   };
   
   const canGoPrev = currentChapter > 1 || 
-    (currentBook && NT_BOOKS.findIndex(b => b.key === currentBook) > 0);
+    (currentBook && NT_BOOKS.findIndex(b => b.key === currentBook) > 0 && 
+     NT_BOOKS.slice(0, NT_BOOKS.findIndex(b => b.key === currentBook)).some(book => isBookAvailable(book.key)));
   
   const canGoNext = currentChapter < maxChapter || 
-    (currentBook && NT_BOOKS.findIndex(b => b.key === currentBook) < NT_BOOKS.length - 1);
+    (currentBook && NT_BOOKS.findIndex(b => b.key === currentBook) < NT_BOOKS.length - 1 &&
+     NT_BOOKS.slice(NT_BOOKS.findIndex(b => b.key === currentBook) + 1).some(book => isBookAvailable(book.key)));
   
   return (
     <div className="bg-white border-b border-gray-200 sticky top-0 z-10">

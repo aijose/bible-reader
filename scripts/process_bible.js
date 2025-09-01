@@ -106,6 +106,10 @@ function processBibleText() {
       for (const line of lines) {
         const verseRef = parseVerseReference(line);
         if (verseRef) {
+          if (book.key === 'galatians') {
+            console.log(`📝 Galatians verse: ${verseRef.chapter}:${verseRef.verse}`);
+          }
+          
           if (verseRef.chapter !== currentChapter) {
             currentChapter = verseRef.chapter;
             if (!bookData.chapters[currentChapter]) {

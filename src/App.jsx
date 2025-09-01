@@ -22,6 +22,10 @@ function App() {
         setLoadingProgress({ step: 'Loading Bible text...', progress: 20 });
         
         const bible = await loadBibleData();
+        console.log('📚 Loaded Bible data:', { 
+          totalBooks: Object.keys(bible.books || {}).length,
+          galatians: bible.books?.galatians ? Object.keys(bible.books.galatians.chapters || {}) : 'not found'
+        });
         setBibleData(bible);
         setLoadingProgress({ step: 'Loading commentaries...', progress: 60 });
         

@@ -7,6 +7,8 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
   const cleanupRef = useRef(null);
   const [isRendering, setIsRendering] = useState(false);
   
+  console.log('📖 BibleReader debug:', { book, chapter });
+  
   useEffect(() => {
     if (containerRef.current && onVerseSelect) {
       if (cleanupRef.current) {
