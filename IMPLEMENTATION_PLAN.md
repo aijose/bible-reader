@@ -71,7 +71,7 @@ Incremental implementation plan for the Bible Reader with Commentary application
    - Support threshold-based filtering (0.3 minimum similarity)
 
 ### Deliverables
-- `public/data/embeddings.json` (1,681 verses across 6 books)
+- `public/data/embeddings.json` (2,022 verses across 6 books)
 - `scripts/generate_embeddings.py` (Python-based generation)
 - Client-side similarity computation in `ragSystem.js`
 
@@ -137,24 +137,16 @@ Incremental implementation plan for the Bible Reader with Commentary application
    - Implement passage type indicators (semantic, direct, thematic)
    - Always display when verse is selected (independent of commentary)
 
-3. **Genre-Aware Processing**
-   - Implement different processing for biblical genres:
-     - Gospels: Emphasize parallel passages, Jesus's teachings
-     - Epistles: Focus on doctrinal connections
-     - Prophecy: Highlight fulfillment patterns
-     - Historical: Context and cultural background
-
 ### Deliverables
-- Scalable RAG system supporting 1,681+ verses
+- Scalable RAG system supporting 2,022+ verses
 - Real-time related passage discovery
 - Multi-source result integration
-- Genre-specific processing logic
 
 ### Success Criteria
 - Related passages computed on-demand under 100ms
 - Results combine semantic similarity (0.3+ threshold) with cross-references
 - System scales linearly with verse count (O(n) not O(n²))
-- Quality connections across Matthew, John, Galatians, Ephesians, Philippians
+- Quality connections across Matthew, John, Galatians, Ephesians, Philippians, Revelation
 
 ---
 
@@ -214,7 +206,7 @@ Incremental implementation plan for the Bible Reader with Commentary application
 ### Data Files
 - `bible_asv.json`: ASV text structured by book/chapter/verse
 - `commentaries.json`: Verse-linked commentary from both sources
-- `embeddings.json`: 384-dimensional verse embeddings (1,681 verses)
+- `embeddings.json`: 384-dimensional verse embeddings (2,022 verses)
 - `cross_references.json`: Traditional reference chains
 - ~~`similarity_matrix.json`~~: Removed for scalability (was O(n²))
 
@@ -228,7 +220,7 @@ The initial implementation used a precomputed similarity matrix approach:
 - **Storage**: `similarity_matrix.json` with precalculated scores
 - **Complexity**: O(n²) storage and generation time
 - **Problem**: For n verses, requires n×(n-1)/2 similarity calculations
-- **Scaling**: 1,681 verses = 1.4M+ similarity pairs, 27,000 verses = 365M+ pairs
+- **Scaling**: 2,022 verses = 2.0M+ similarity pairs, 27,000 verses = 365M+ pairs
 
 ### Current Approach (Scalable)
 Redesigned for linear scalability using on-demand computation:
@@ -244,7 +236,7 @@ Redesigned for linear scalability using on-demand computation:
 - **Embedding Size**: 384 dimensions per verse
 - **Similarity Function**: Cosine similarity with L2 normalized vectors
 - **Performance**: <100ms per query, <5MB embedding data
-- **Coverage**: 1,681 verses across Matthew, John, Galatians, Ephesians, Philippians, partial Revelation
+- **Coverage**: 2,022 verses across Matthew, John, Galatians, Ephesians, Philippians, Revelation
 
 ---
 
