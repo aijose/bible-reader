@@ -86,9 +86,9 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className={`hidden sm:block fixed inset-y-0 right-0 w-96 xl:w-[28rem] bg-gray-50 border-l border-gray-200 transform transition-transform duration-300 z-20 ${
+      <div className={`hidden sm:block fixed inset-y-0 right-0 bg-gray-50 border-l border-gray-200 transform transition-transform duration-300 z-20 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`}>
+      }`} style={{ width: '400px', minWidth: '400px', maxWidth: '400px' }}>
       
       {/* Header */}
       <div className="bg-white border-b border-gray-200 p-4">
