@@ -72,14 +72,21 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
     }));
   };
   
-  if (!isOpen) return null;
-  
   const verseCommentaries = selectedVerse ? commentaries?.commentaries?.[selectedVerse] : null;
+  
+  console.log('💬 Commentary render:', { selectedVerse, isOpen, hasCommentaries: !!commentaries, verseCommentariesCount: verseCommentaries?.length || 0 });
+  
+  // Debug: Force visibility for testing
+  if (selectedVerse) {
+    console.log('🚨 Commentary should be visible! SelectedVerse:', selectedVerse, 'IsOpen:', isOpen);
+  } else {
+    console.log('⚪ No verse selected, showing placeholder');
+  }
   
   return (
     <>
       {/* Desktop Sidebar */}
-      <div className={`hidden lg:block fixed inset-y-0 right-0 w-96 bg-gray-50 border-l border-gray-200 transform transition-transform duration-300 z-20 ${
+      <div className={`hidden lg:block fixed inset-y-0 right-0 w-96 bg-red-100 border-l-4 border-red-500 transform transition-transform duration-300 z-20 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
       
@@ -152,9 +159,9 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       </div>
 
       {/* Mobile Bottom Sheet */}
-      <div className={`lg:hidden fixed inset-x-0 bottom-0 bg-gray-50 border-t border-gray-200 transform transition-transform duration-300 z-30 ${
+      <div className={`lg:hidden fixed inset-x-0 bottom-0 bg-yellow-100 border-t-4 border-yellow-500 transform transition-transform duration-300 z-50 shadow-2xl ${
         isOpen ? 'translate-y-0' : 'translate-y-full'
-      }`} style={{ height: '70vh' }}>
+      }`} style={{ height: '50vh', maxHeight: '500px' }}>
         
         {/* Mobile Header */}
         <div className="bg-white border-b border-gray-200 p-4">

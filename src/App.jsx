@@ -1,9 +1,8 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import BibleReader from './components/BibleReader';
+import Commentary from './components/Commentary';
 import { loadBibleData, loadCommentaries, clearCache } from './utils/dataLoader';
-
-const Commentary = lazy(() => import('./components/Commentary'));
 
 function App() {
   const [bibleData, setBibleData] = useState(null);
@@ -47,6 +46,7 @@ function App() {
   }, []);
 
   const handleVerseSelect = (verseId) => {
+    console.log('🎯 Verse selected:', verseId);
     setSelectedVerse(verseId);
     setSidebarOpen(true);
   };
@@ -176,7 +176,7 @@ function App() {
         bibleData={bibleData}
       />
       
-      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:mr-96 pb-[70vh] lg:pb-6' : 'pb-6'}`}>
+      <main className={`transition-all duration-300 ${sidebarOpen ? 'lg:mr-96' : ''}`}>
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="bg-white rounded-lg shadow-sm p-6">
             <BibleReader
@@ -189,20 +189,14 @@ function App() {
         </div>
       </main>
       
-      <Suspense fallback={
-        <div className="fixed inset-y-0 right-0 w-96 bg-gray-50 border-l border-gray-200 flex items-center justify-center">
-          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-        </div>
-      }>
-        <Commentary
-          selectedVerse={selectedVerse}
-          commentaries={commentaries}
-          bibleData={bibleData}
-          isOpen={sidebarOpen}
-          onClose={() => setSidebarOpen(false)}
-          onNavigate={handleNavigateToVerse}
-        />
-      </Suspense>
+      <Commentary
+        selectedVerse={selectedVerse}
+        commentaries={commentaries}
+        bibleData={bibleData}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        onNavigate={handleNavigateToVerse}
+      />
     </div>
   );
 }

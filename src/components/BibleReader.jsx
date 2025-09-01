@@ -77,6 +77,8 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
   
   const verseNumbers = Object.keys(verses).sort((a, b) => parseInt(a) - parseInt(b));
   
+  console.log('📖 Rendering verses:', verseNumbers.length, 'verses for', book.metadata.name, chapter);
+  
   return (
     <div 
       ref={containerRef}
@@ -96,6 +98,10 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
               <div
                 key={verseNum}
                 data-verse-id={verseId}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onVerseSelect(verseId);
+                }}
                 className={`verse-container ${
                   isSelected 
                     ? 'bg-blue-50 border-l-4 border-blue-500 pl-4 py-2 rounded-r' 
