@@ -104,7 +104,7 @@ function RelatedPassages({ selectedVerse, bibleData, onNavigate, isOpen }) {
   if (!isOpen) return null;
 
   return (
-    <div className="border-t border-gray-200 bg-gray-50 flex-shrink-0 max-h-96 overflow-y-auto">
+    <div className="border-t border-gray-200 bg-gray-50 flex-shrink-0 max-h-48 overflow-y-auto">
       <div className="p-4">
         <h3 className="text-lg font-semibold text-gray-900 mb-4">
           Related Passages
