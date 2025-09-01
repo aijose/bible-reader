@@ -70,9 +70,8 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
   return (
     <>
       {/* Full Width Commentary */}
-      <div className={`fixed inset-0 bg-gray-50 transform transition-transform duration-300 z-20 flex flex-col ${
-        isOpen ? 'translate-y-0' : 'translate-y-full'
-      }`} style={{ width: '100vw', minWidth: '100vw', height: '100vh' }}>
+      {isOpen && (
+      <div className="w-full bg-gray-50 border-t-4 border-blue-500 min-h-96 flex flex-col" style={{ width: '100vw', minWidth: '100vw' }}>
       
       {/* Header */}
       <div className="bg-white border-b border-gray-200 p-4 w-full">
@@ -96,7 +95,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       </div>
       
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-4 w-full min-h-0">
+      <div className="flex-1 flex flex-col overflow-hidden w-full">
         {!selectedVerse ? (
           <div className="flex items-center justify-center h-64 text-gray-500">
             <div className="text-center">
@@ -112,35 +111,33 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
             </div>
           </div>
         ) : (
-          <div className="space-y-4 w-full">
-            {verseCommentaries.map((commentary, index) => (
-              <CommentarySection
-                key={`${commentary.source}-${index}`}
-                commentary={commentary}
-                isExpanded={expandedSections[commentary.source]}
-                onToggleExpand={() => toggleSection(commentary.source)}
-              />
-            ))}
-          </div>
+          <>
+            {/* Commentary Section */}
+            <div className="flex-1 overflow-y-auto p-4 w-full">
+              <div className="space-y-4 w-full">
+                {verseCommentaries.map((commentary, index) => (
+                  <CommentarySection
+                    key={`${commentary.source}-${index}`}
+                    commentary={commentary}
+                    isExpanded={expandedSections[commentary.source]}
+                    onToggleExpand={() => toggleSection(commentary.source)}
+                  />
+                ))}
+              </div>
+            </div>
+            
+            {/* Related Passages Section */}
+            <RelatedPassages
+              selectedVerse={selectedVerse}
+              bibleData={bibleData}
+              onNavigate={onNavigate}
+              isOpen={isOpen && selectedVerse}
+            />
+          </>
         )}
-        
-        {/* Related Passages Section */}
-        <RelatedPassages
-          selectedVerse={selectedVerse}
-          bibleData={bibleData}
-          onNavigate={onNavigate}
-          isOpen={isOpen && selectedVerse}
-        />
       </div>
-      
-        {/* Footer */}
-        <div className="bg-white border-t border-gray-200 p-4 flex-shrink-0">
-          <div className="text-xs text-gray-500">
-            <p>Commentary sources: Matthew Henry, John Gill</p>
-            <p className="mt-1">Public domain materials</p>
-          </div>
-        </div>
       </div>
+      )}
     </>
   );
 }

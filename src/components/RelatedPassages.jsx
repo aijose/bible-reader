@@ -101,59 +101,63 @@ function RelatedPassages({ selectedVerse, bibleData, onNavigate, isOpen }) {
     setRetryCount(prev => prev + 1);
   };
 
+  console.log('🔗 RelatedPassages render:', { selectedVerse, isOpen, passagesCount: relatedPassages.length, loading, error });
+  
   if (!isOpen) return null;
 
   return (
-    <div className="border-t border-gray-200 bg-gray-50 flex-shrink-0 max-h-48 overflow-y-auto">
-      <div className="p-4">
-        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+    <div className="border-t border-gray-200 bg-gray-50 flex-shrink-0 h-40 flex flex-col">
+      <div className="p-3 flex-shrink-0">
+        <h3 className="text-base font-semibold text-gray-900 mb-2">
           Related Passages
         </h3>
-        
+      </div>
+      
+      <div className="flex-1 overflow-y-auto px-3 pb-3">
         {loading ? (
-          <div className="flex items-center justify-center py-8">
-            <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-600"></div>
-            <span className="ml-2 text-gray-600">Finding related passages...</span>
+          <div className="flex items-center justify-center py-4">
+            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
+            <span className="ml-2 text-gray-600 text-sm">Finding related passages...</span>
           </div>
         ) : error ? (
-          <div className="text-center py-8">
-            <AlertCircle className="h-8 w-8 mx-auto mb-3 text-red-500" />
-            <p className="text-red-600 mb-2 font-medium">Unable to load related passages</p>
-            <p className="text-gray-600 text-sm mb-4">{error}</p>
+          <div className="text-center py-4">
+            <AlertCircle className="h-6 w-6 mx-auto mb-2 text-red-500" />
+            <p className="text-red-600 mb-1 font-medium text-sm">Unable to load related passages</p>
+            <p className="text-gray-600 text-xs mb-3">{error}</p>
             <button
               onClick={handleRetry}
-              className="inline-flex items-center space-x-2 px-3 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center space-x-1 px-2 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
             >
-              <RefreshCw className="h-4 w-4" />
+              <RefreshCw className="h-3 w-3" />
               <span>Retry</span>
             </button>
           </div>
         ) : relatedPassages.length === 0 ? (
-          <div className="text-center py-8">
-            <p className="text-gray-500">No related passages found</p>
-            <p className="text-gray-400 text-sm mt-1">
+          <div className="text-center py-4">
+            <p className="text-gray-500 text-sm">No related passages found</p>
+            <p className="text-gray-400 text-xs mt-1">
               Try selecting a different verse
             </p>
           </div>
         ) : (
-          <div className="space-y-2 max-h-64 overflow-y-auto">
-            {relatedPassages.map((passage, index) => (
-              <PassageCard
-                key={`${passage.verse}-${index}`}
-                passage={passage}
-                bibleData={bibleData}
-                onNavigate={onNavigate}
-              />
-            ))}
-          </div>
-        )}
-        
-        {relatedPassages.length > 0 && (
-          <div className="mt-4 pt-3 border-t border-gray-200">
-            <p className="text-xs text-gray-500">
-              Showing top {relatedPassages.length} most relevant passages
-            </p>
-          </div>
+          <>
+            <div className="space-y-2">
+              {relatedPassages.map((passage, index) => (
+                <PassageCard
+                  key={`${passage.verse}-${index}`}
+                  passage={passage}
+                  bibleData={bibleData}
+                  onNavigate={onNavigate}
+                />
+              ))}
+            </div>
+            
+            <div className="mt-2 pt-2 border-t border-gray-200 flex-shrink-0">
+              <p className="text-xs text-gray-500">
+                Showing top {relatedPassages.length} most relevant passages
+              </p>
+            </div>
+          </>
         )}
       </div>
     </div>
