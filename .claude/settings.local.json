@@ -20,7 +20,8 @@
       "Bash(python:*)",
       "Bash(uv venv:*)",
       "Bash(npm run build:*)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(jq:*)"
     ],
     "deny": []
   }

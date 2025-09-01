@@ -30,13 +30,15 @@ The `docs/` directory contains organized project documentation:
 ## Current Status
 **Phase 5 Complete**: Full Bible Reader application with RAG system
 - ✅ Complete React application with all core components
-- ✅ ASV Bible text (Matthew & Mark) with 1,198 verses embedded
+- ✅ ASV Bible text: Matthew (21/28 chapters), Mark (9/16 chapters), Luke (0/24 chapters)
 - ✅ RAG system with semantic search and 6,011 similarity connections
+- ✅ Full-width commentary overlay with proper scrolling and height management
 - ✅ Mobile-responsive design with desktop sidebar and mobile bottom sheet
 - ✅ Comprehensive error handling and loading states
 - ✅ Performance optimizations and offline support
 - ✅ Production deployment configurations (Netlify/Vercel)
 - ✅ Working commentary and related passage discovery
+- ⚠️ **Data Limitation**: API rate limits prevented complete NT download
 
 ## Technical Stack
 - **Frontend**: React + Vite + TailwindCSS + Lucide React
@@ -82,13 +84,20 @@ uv pip install -r requirements.txt  # Install dependencies
 - Offline functionality after initial load
 
 ## Features Completed
-1. **Bible Text Display**: Clean verse-by-verse reading with Matthew & Mark
+1. **Bible Text Display**: Clean verse-by-verse reading 
 2. **Commentary System**: Matthew Henry and John Gill commentary integration
 3. **RAG System**: Semantic search with 1,198 verse embeddings
 4. **Related Passages**: Top 5 similarity matches with connection types
-5. **Responsive Design**: Desktop sidebar and mobile bottom sheet
-6. **Performance**: Service worker, caching, lazy loading, 192KB bundle
-7. **Error Handling**: Comprehensive loading states and retry mechanisms
+5. **Full-Width Commentary**: Overlay spans entire browser width with proper scrolling
+6. **Responsive Design**: Desktop overlay and mobile bottom sheet with height constraints
+7. **Performance**: Service worker, caching, lazy loading, 192KB bundle
+8. **Error Handling**: Comprehensive loading states and retry mechanisms
+
+## Available Content
+- **Matthew**: Chapters 1-21 (984 verses) - Full commentary and RAG system
+- **Mark**: Chapters 1-9 (214 verses) - Full commentary and RAG system  
+- **Luke**: No chapters available (API rate limited during download)
+- **John-Revelation**: 24 books pending download (API rate limits)
 
 ## Next Steps for Future Development
 1. Download remaining NT books (John through Revelation) with rate limiting
