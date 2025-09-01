@@ -150,7 +150,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       </div>
       
         {/* Footer */}
-        <div className="bg-white border-t border-gray-200 p-4">
+        <div className="bg-white border-t border-gray-200 p-4 flex-shrink-0">
           <div className="text-xs text-gray-500">
             <p>Commentary sources: Matthew Henry, John Gill</p>
             <p className="mt-1">Public domain materials</p>
