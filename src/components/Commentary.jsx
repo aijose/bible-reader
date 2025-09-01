@@ -88,11 +88,11 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       {/* Full Width Commentary */}
       <div className={`fixed inset-0 bg-gray-50 transform transition-transform duration-300 z-20 ${
         isOpen ? 'translate-y-0' : 'translate-y-full'
-      }`}>
+      }`} style={{ width: '100vw', minWidth: '100vw' }}>
       
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 p-4">
-        <div className="flex items-center justify-between">
+      <div className="bg-white border-b border-gray-200 p-4 w-full">
+        <div className="flex items-center justify-between w-full">
           <h3 className="text-lg font-semibold text-gray-900">
             Commentary
           </h3>
