@@ -81,6 +81,12 @@ data-sources/
 - **Format**: Theological exposition with historical context
 - **API**: Various endpoints depending on book
 
+#### Proven Working Sources (Updated September 2025)
+- **StudyLight.org**: `https://www.studylight.org/commentaries/eng/geb/revelation-{chapter}.html` - Successfully used for Revelation commentary
+- **Sacred-texts.com**: `https://www.sacred-texts.com/bib/cmt/gill/rev003.htm` - Successfully used for Revelation chapter 3 commentary
+- **Internet Archive**: Archive.org hosts complete digital copies of Gill's Exposition
+- **BibleHub.com**: Alternative source for Gill's commentary with good formatting
+
 ### Collection Process
 
 1. **Automated Download (Recommended)**
@@ -104,7 +110,29 @@ data-sources/
    - Download verse-by-verse sections
    - Save as `data-sources/john_gill/{book}.txt`
 
-3. **Text Format Requirements**
+3. **Successful Collection Process (Revelation Example)**
+   The following process was successfully used to collect Revelation commentary:
+   
+   **Step 1: Initial Setup**
+   ```bash
+   # Attempt automated web scraping first
+   cd scripts
+   node download_revelation_commentary.js
+   ```
+   
+   **Step 2: Manual Collection with Task Agent**
+   - Use Task tool with general-purpose agent for systematic web collection
+   - Target StudyLight.org URLs: `https://www.studylight.org/commentaries/eng/geb/revelation-{chapter}.html`
+   - Fallback to sacred-texts.com: `https://www.sacred-texts.com/bib/cmt/gill/rev{chapter}.htm`
+   - Extract verse-by-verse content and format consistently
+   
+   **Step 3: File Updates**
+   - Append new commentary to existing `data-sources/john_gill/{book}.txt`
+   - Maintain format: `{chapter}:{verse} [Commentary text]`
+   - Process through `node process_commentary.js`
+   - Update cache version in `src/utils/dataLoader.js`
+
+4. **Text Format Requirements**
    Commentary files should follow this format:
    ```
    1:1 [Commentary text for verse 1:1]
@@ -201,8 +229,7 @@ uv run generate_embeddings.py
 ## Current Data Status
 
 ### Bible Text Coverage
-- ✅ **Complete**: Matthew, John, Galatians, Ephesians, Philippians
-- ⚠️ **Partial**: Revelation (chapters 20-22 only)
+- ✅ **Complete**: Matthew, John, Galatians, Ephesians, Philippians, Revelation
 - ❌ **Missing**: Mark, Luke, Acts, Romans, Corinthians, etc.
 
 ### Commentary Coverage  
@@ -211,13 +238,14 @@ uv run generate_embeddings.py
 - ✅ **Galatians**: Matthew Henry + John Gill (235 entries)
 - ✅ **Ephesians**: John Gill (155 entries)
 - ✅ **Philippians**: John Gill (103 entries)
-- ❌ **Missing**: All other NT books
+- ✅ **Revelation**: John Gill (33 entries) - *Successfully collected from StudyLight.org and sacred-texts.com*
+- ❌ **Missing**: Mark, Luke, Acts, Romans, Corinthians, etc.
 
 ### Embeddings Coverage
-- **Total Verses**: 1,681 verses across 6 books
+- **Total Verses**: 2,022 verses across 6 books (updated with complete Revelation)
 - **Model**: sentence-transformers/all-MiniLM-L6-v2
 - **Dimensions**: 384 per verse
-- **File Size**: ~5MB
+- **File Size**: ~6MB
 
 ---
 

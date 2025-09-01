@@ -17,7 +17,7 @@ function getCachedData(key) {
     const now = Date.now();
     
     // Check version compatibility (invalidate old cache formats)
-    if (version !== '1.8') {
+    if (version !== '1.9') {
       localStorage.removeItem(key);
       return null;
     }
@@ -50,7 +50,7 @@ function setCachedData(key, data) {
     const cacheEntry = {
       data,
       timestamp: Date.now(),
-      version: '1.8'
+      version: '1.9'
     };
     localStorage.setItem(key, JSON.stringify(cacheEntry));
     console.log(`💾 Cached ${key} (${(JSON.stringify(cacheEntry).length / 1024).toFixed(1)}KB)`);
