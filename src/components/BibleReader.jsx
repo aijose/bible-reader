@@ -110,7 +110,7 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
                     : 'hover:bg-gray-50 active:bg-gray-100 py-1'
                 } transition-colors cursor-pointer select-text touch-manipulation`}
               >
-                <span className="verse-number inline-block w-8 text-sm font-medium text-gray-500 mr-2">
+                <span className="verse-number inline-block text-sm font-medium text-gray-500" style={{marginRight: '8px', minWidth: '32px'}}>
                   {verseNum}
                 </span>
                 <span className="verse-text text-gray-900">
