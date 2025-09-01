@@ -7,7 +7,7 @@ function CommentarySection({ commentary, isExpanded, onToggleExpand }) {
   const displayText = showPreview ? commentary.preview : commentary.text;
   
   return (
-    <div className="border border-gray-200 rounded-lg p-4 bg-white">
+    <div className="border border-gray-200 rounded-lg p-4 bg-white w-full">
       <div className="flex items-center justify-between mb-3">
         <div className="flex items-center space-x-2">
           <User className="h-4 w-4 text-gray-600" />
@@ -112,7 +112,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       </div>
       
       {/* Content */}
-      <div className="flex-1 overflow-y-auto p-4">
+      <div className="flex-1 overflow-y-auto p-4 w-full">
         {!selectedVerse ? (
           <div className="flex items-center justify-center h-64 text-gray-500">
             <div className="text-center">
@@ -128,7 +128,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
             </div>
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-4 w-full">
             {verseCommentaries.map((commentary, index) => (
               <CommentarySection
                 key={`${commentary.source}-${index}`}
