@@ -26,15 +26,25 @@ cd bible_reader
 npm install
 ```
 
-### 2. Python Environment (for embeddings)
+### 2. Python Environment (for embeddings) - Using uv
 ```bash
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# or
-venv\Scripts\activate     # Windows
+# Install uv (recommended - fast and reliable)
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install Python dependencies
+# Create and activate virtual environment
+uv venv
+source .venv/bin/activate  # Linux/Mac
+# or
+.venv\Scripts\activate     # Windows
+
+# Install dependencies from pyproject.toml
+uv pip install -e .
+```
+
+### Alternative: Traditional Python setup
+```bash
+python -m venv venv
+source venv/bin/activate
 pip install sentence-transformers torch numpy pandas
 ```
 
@@ -49,7 +59,7 @@ npm run dev
 ## Development Workflow
 
 ### Daily Startup
-1. Activate Python environment: `source venv/bin/activate`
+1. Activate Python environment: `source .venv/bin/activate` (uv) or `source venv/bin/activate` (traditional)
 2. Start development server: `npm run dev`
 3. Open browser to `http://localhost:3000`
 

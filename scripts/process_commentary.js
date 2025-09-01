@@ -78,8 +78,8 @@ function parseCommentaryFile(filePath, source, bookKey) {
   
   const commentary = {};
   let currentVerse = null;
-  let currentText = '';
   let currentChapter = 1;
+  let verseCount = 0;
 
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i].trim();
@@ -88,9 +88,16 @@ function parseCommentaryFile(filePath, source, bookKey) {
     
     const verseRef = extractVerseReference(line);
     if (verseRef) {
-      if (currentVerse && currentText.trim()) {
+      if (verseRef.chapter) currentChapter = verseRef.chapter;
+      currentVerse = verseRef.verse;
+      
+      // Extract commentary text that follows the verse reference
+      const verseRefMatch = line.match(/^\d+:\d+\s+(.*)$/);
+      const commentaryText = verseRefMatch ? verseRefMatch[1] : '';
+      
+      if (commentaryText.trim()) {
         const verseKey = `${bookKey}_${currentChapter}_${currentVerse}`;
-        const cleanText = currentText.trim();
+        const cleanText = commentaryText.trim();
         
         if (!commentary[verseKey]) {
           commentary[verseKey] = [];
@@ -103,33 +110,14 @@ function parseCommentaryFile(filePath, source, bookKey) {
           theological_tags: identifyTheologicalTags(cleanText),
           length: cleanText.length
         });
+        
+        verseCount++;
+        console.log(`  Processed ${source} commentary for ${verseKey}`);
       }
-      
-      if (verseRef.chapter) currentChapter = verseRef.chapter;
-      currentVerse = verseRef.verse;
-      currentText = '';
-    } else {
-      currentText += line + ' ';
     }
   }
   
-  if (currentVerse && currentText.trim()) {
-    const verseKey = `${bookKey}_${currentChapter}_${currentVerse}`;
-    const cleanText = currentText.trim();
-    
-    if (!commentary[verseKey]) {
-      commentary[verseKey] = [];
-    }
-    
-    commentary[verseKey].push({
-      source: source,
-      text: cleanText,
-      preview: createPreviewText(cleanText),
-      theological_tags: identifyTheologicalTags(cleanText),
-      length: cleanText.length
-    });
-  }
-
+  console.log(`  ✅ ${source}: ${verseCount} commentary entries processed`);
   return commentary;
 }
 

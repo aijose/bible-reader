@@ -31,10 +31,24 @@ npm install -D tailwindcss postcss autoprefixer
 npm install lucide-react
 ```
 
-### 3. Python Dependencies (for data processing)
+### 3. Python Dependencies (for data processing) - Using uv
 ```bash
-# Required for Phase 2 - Embeddings
-pip install sentence-transformers torch numpy
+# Install uv (fast Python package manager)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create and activate virtual environment
+uv venv
+source .venv/bin/activate  # Linux/Mac
+# or
+.venv\Scripts\activate     # Windows
+
+# Install dependencies from pyproject.toml
+uv pip install -e .
+```
+
+### Alternative: Traditional pip approach
+```bash
+pip install sentence-transformers torch numpy pandas
 ```
 
 ## Project Structure

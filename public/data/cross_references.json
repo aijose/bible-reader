@@ -1,0 +1,837 @@
+{
+  "metadata": {
+    "source": "Traditional study Bible references",
+    "coverage": "New Testament",
+    "reference_types": [
+      "direct_quote",
+      "clear_allusion",
+      "parallel_account",
+      "thematic_strong",
+      "thematic_moderate",
+      "word_study",
+      "topical"
+    ],
+    "thematic_categories": [
+      "genealogy",
+      "virgin_birth",
+      "davidic_covenant",
+      "messianic_prophecy",
+      "salvation",
+      "fulfillment"
+    ],
+    "processing_date": "2025-09-01T02:10:53.672Z",
+    "total_verses_with_refs": 30,
+    "total_thematic_connections": 22
+  },
+  "direct_references": {
+    "matthew_1_1": [
+      {
+        "verse": "luke_3_23",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "genealogy"
+      },
+      {
+        "verse": "1_chronicles_3_10",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "davidic_lineage"
+      },
+      {
+        "verse": "romans_1_3",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "son_of_david"
+      }
+    ],
+    "matthew_1_2": [
+      {
+        "verse": "genesis_21_3",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "abraham_isaac"
+      },
+      {
+        "verse": "genesis_25_26",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "isaac_jacob"
+      },
+      {
+        "verse": "genesis_29_35",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "judah_lineage"
+      }
+    ],
+    "matthew_1_16": [
+      {
+        "verse": "luke_1_27",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "mary_joseph"
+      },
+      {
+        "verse": "luke_2_4",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "davidic_ancestry"
+      }
+    ],
+    "matthew_1_18": [
+      {
+        "verse": "luke_1_35",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "virgin_birth"
+      },
+      {
+        "verse": "luke_2_5",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "betrothal"
+      }
+    ],
+    "matthew_1_21": [
+      {
+        "verse": "luke_1_31",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "jesus_name"
+      },
+      {
+        "verse": "acts_4_12",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "salvation_name"
+      },
+      {
+        "verse": "1_timothy_1_15",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "save_sinners"
+      }
+    ],
+    "matthew_1_23": [
+      {
+        "verse": "isaiah_7_14",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "immanuel_prophecy"
+      },
+      {
+        "verse": "luke_1_31",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "virgin_birth"
+      }
+    ],
+    "matthew_2_1": [
+      {
+        "verse": "luke_2_4",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "bethlehem_birth"
+      },
+      {
+        "verse": "micah_5_2",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "bethlehem_prophecy"
+      }
+    ],
+    "matthew_2_2": [
+      {
+        "verse": "numbers_24_17",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "star_prophecy"
+      },
+      {
+        "verse": "revelation_22_16",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "bright_morning_star"
+      }
+    ],
+    "matthew_2_6": [
+      {
+        "verse": "micah_5_2",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "bethlehem_ruler"
+      },
+      {
+        "verse": "2_samuel_5_2",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "shepherd_israel"
+      }
+    ],
+    "matthew_2_15": [
+      {
+        "verse": "hosea_11_1",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "egypt_my_son"
+      },
+      {
+        "verse": "exodus_4_22",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "israel_my_son"
+      }
+    ],
+    "luke_3_23": [
+      {
+        "verse": "matthew_1_1",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "genealogy"
+      }
+    ],
+    "1_chronicles_3_10": [
+      {
+        "verse": "matthew_1_1",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "davidic_lineage"
+      }
+    ],
+    "romans_1_3": [
+      {
+        "verse": "matthew_1_1",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "son_of_david"
+      }
+    ],
+    "genesis_21_3": [
+      {
+        "verse": "matthew_1_2",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "abraham_isaac"
+      }
+    ],
+    "genesis_25_26": [
+      {
+        "verse": "matthew_1_2",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "isaac_jacob"
+      }
+    ],
+    "genesis_29_35": [
+      {
+        "verse": "matthew_1_2",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "judah_lineage"
+      }
+    ],
+    "luke_1_27": [
+      {
+        "verse": "matthew_1_16",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "mary_joseph"
+      }
+    ],
+    "luke_2_4": [
+      {
+        "verse": "matthew_1_16",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "davidic_ancestry"
+      },
+      {
+        "verse": "matthew_2_1",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "bethlehem_birth"
+      }
+    ],
+    "luke_1_35": [
+      {
+        "verse": "matthew_1_18",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "virgin_birth"
+      }
+    ],
+    "luke_2_5": [
+      {
+        "verse": "matthew_1_18",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "betrothal"
+      }
+    ],
+    "luke_1_31": [
+      {
+        "verse": "matthew_1_21",
+        "type": "parallel_account",
+        "weight": 0.95,
+        "reason": "jesus_name"
+      },
+      {
+        "verse": "matthew_1_23",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "virgin_birth"
+      }
+    ],
+    "acts_4_12": [
+      {
+        "verse": "matthew_1_21",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "salvation_name"
+      }
+    ],
+    "1_timothy_1_15": [
+      {
+        "verse": "matthew_1_21",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "save_sinners"
+      }
+    ],
+    "isaiah_7_14": [
+      {
+        "verse": "matthew_1_23",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "immanuel_prophecy"
+      }
+    ],
+    "micah_5_2": [
+      {
+        "verse": "matthew_2_1",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "bethlehem_prophecy"
+      },
+      {
+        "verse": "matthew_2_6",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "bethlehem_ruler"
+      }
+    ],
+    "numbers_24_17": [
+      {
+        "verse": "matthew_2_2",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "star_prophecy"
+      }
+    ],
+    "revelation_22_16": [
+      {
+        "verse": "matthew_2_2",
+        "type": "thematic_moderate",
+        "weight": 0.6,
+        "reason": "bright_morning_star"
+      }
+    ],
+    "2_samuel_5_2": [
+      {
+        "verse": "matthew_2_6",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "shepherd_israel"
+      }
+    ],
+    "hosea_11_1": [
+      {
+        "verse": "matthew_2_15",
+        "type": "direct_quote",
+        "weight": 1,
+        "reason": "egypt_my_son"
+      }
+    ],
+    "exodus_4_22": [
+      {
+        "verse": "matthew_2_15",
+        "type": "thematic_strong",
+        "weight": 0.8,
+        "reason": "israel_my_son"
+      }
+    ]
+  },
+  "thematic_connections": {
+    "matthew_1_1": {
+      "genealogy": [
+        "matthew_1_2",
+        "luke_3_23",
+        "1_chronicles_3_10"
+      ],
+      "davidic_covenant": [
+        "matthew_1_6",
+        "2_samuel_7_12",
+        "psalm_89_3"
+      ]
+    },
+    "matthew_1_2": {
+      "genealogy": [
+        "matthew_1_1",
+        "luke_3_23",
+        "1_chronicles_3_10"
+      ]
+    },
+    "luke_3_23": {
+      "genealogy": [
+        "matthew_1_1",
+        "matthew_1_2",
+        "1_chronicles_3_10"
+      ]
+    },
+    "1_chronicles_3_10": {
+      "genealogy": [
+        "matthew_1_1",
+        "matthew_1_2",
+        "luke_3_23"
+      ]
+    },
+    "matthew_1_18": {
+      "virgin_birth": [
+        "matthew_1_23",
+        "luke_1_27",
+        "luke_1_35"
+      ]
+    },
+    "matthew_1_23": {
+      "virgin_birth": [
+        "matthew_1_18",
+        "luke_1_27",
+        "luke_1_35"
+      ],
+      "messianic_prophecy": [
+        "matthew_2_6",
+        "isaiah_7_14",
+        "micah_5_2"
+      ]
+    },
+    "luke_1_27": {
+      "virgin_birth": [
+        "matthew_1_18",
+        "matthew_1_23",
+        "luke_1_35"
+      ]
+    },
+    "luke_1_35": {
+      "virgin_birth": [
+        "matthew_1_18",
+        "matthew_1_23",
+        "luke_1_27"
+      ]
+    },
+    "matthew_1_6": {
+      "davidic_covenant": [
+        "matthew_1_1",
+        "2_samuel_7_12",
+        "psalm_89_3"
+      ]
+    },
+    "2_samuel_7_12": {
+      "davidic_covenant": [
+        "matthew_1_1",
+        "matthew_1_6",
+        "psalm_89_3"
+      ]
+    },
+    "psalm_89_3": {
+      "davidic_covenant": [
+        "matthew_1_1",
+        "matthew_1_6",
+        "2_samuel_7_12"
+      ]
+    },
+    "matthew_2_6": {
+      "messianic_prophecy": [
+        "matthew_1_23",
+        "isaiah_7_14",
+        "micah_5_2"
+      ]
+    },
+    "isaiah_7_14": {
+      "messianic_prophecy": [
+        "matthew_1_23",
+        "matthew_2_6",
+        "micah_5_2"
+      ]
+    },
+    "micah_5_2": {
+      "messianic_prophecy": [
+        "matthew_1_23",
+        "matthew_2_6",
+        "isaiah_7_14"
+      ]
+    },
+    "matthew_1_21": {
+      "salvation": [
+        "acts_4_12",
+        "1_timothy_1_15",
+        "romans_1_16"
+      ]
+    },
+    "acts_4_12": {
+      "salvation": [
+        "matthew_1_21",
+        "1_timothy_1_15",
+        "romans_1_16"
+      ]
+    },
+    "1_timothy_1_15": {
+      "salvation": [
+        "matthew_1_21",
+        "acts_4_12",
+        "romans_1_16"
+      ]
+    },
+    "romans_1_16": {
+      "salvation": [
+        "matthew_1_21",
+        "acts_4_12",
+        "1_timothy_1_15"
+      ]
+    },
+    "matthew_1_22": {
+      "fulfillment": [
+        "matthew_2_15",
+        "matthew_2_17",
+        "matthew_2_23"
+      ]
+    },
+    "matthew_2_15": {
+      "fulfillment": [
+        "matthew_1_22",
+        "matthew_2_17",
+        "matthew_2_23"
+      ]
+    },
+    "matthew_2_17": {
+      "fulfillment": [
+        "matthew_1_22",
+        "matthew_2_15",
+        "matthew_2_23"
+      ]
+    },
+    "matthew_2_23": {
+      "fulfillment": [
+        "matthew_1_22",
+        "matthew_2_15",
+        "matthew_2_17"
+      ]
+    }
+  },
+  "reference_metadata": {
+    "matthew_1_1": {
+      "total_references": 9,
+      "direct_references": 3,
+      "thematic_references": 6,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "genealogy",
+        "davidic_covenant"
+      ]
+    },
+    "matthew_1_2": {
+      "total_references": 6,
+      "direct_references": 3,
+      "thematic_references": 3,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "genealogy"
+      ]
+    },
+    "matthew_1_16": {
+      "total_references": 2,
+      "direct_references": 2,
+      "thematic_references": 0,
+      "strongest_connection": 0.5,
+      "primary_themes": []
+    },
+    "matthew_1_18": {
+      "total_references": 5,
+      "direct_references": 2,
+      "thematic_references": 3,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "virgin_birth"
+      ]
+    },
+    "matthew_1_21": {
+      "total_references": 6,
+      "direct_references": 3,
+      "thematic_references": 3,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "salvation"
+      ]
+    },
+    "matthew_1_23": {
+      "total_references": 8,
+      "direct_references": 2,
+      "thematic_references": 6,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "virgin_birth",
+        "messianic_prophecy"
+      ]
+    },
+    "matthew_2_1": {
+      "total_references": 2,
+      "direct_references": 2,
+      "thematic_references": 0,
+      "strongest_connection": 0.5,
+      "primary_themes": []
+    },
+    "matthew_2_2": {
+      "total_references": 2,
+      "direct_references": 2,
+      "thematic_references": 0,
+      "strongest_connection": 0.5,
+      "primary_themes": []
+    },
+    "matthew_2_6": {
+      "total_references": 5,
+      "direct_references": 2,
+      "thematic_references": 3,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "messianic_prophecy"
+      ]
+    },
+    "matthew_2_15": {
+      "total_references": 5,
+      "direct_references": 2,
+      "thematic_references": 3,
+      "strongest_connection": 0.5,
+      "primary_themes": [
+        "fulfillment"
+      ]
+    },
+    "luke_3_23": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 0.8,
+      "primary_themes": [
+        "genealogy"
+      ]
+    },
+    "1_chronicles_3_10": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 0.6,
+      "primary_themes": [
+        "genealogy"
+      ]
+    },
+    "romans_1_3": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 1,
+      "primary_themes": []
+    },
+    "genesis_21_3": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 1,
+      "primary_themes": []
+    },
+    "genesis_25_26": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 1,
+      "primary_themes": []
+    },
+    "genesis_29_35": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 0.6,
+      "primary_themes": []
+    },
+    "luke_1_27": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 0.95,
+      "primary_themes": [
+        "virgin_birth"
+      ]
+    },
+    "luke_2_4": {
+      "total_references": 2,
+      "direct_references": 2,
+      "thematic_references": 0,
+      "strongest_connection": 0.95,
+      "primary_themes": []
+    },
+    "luke_1_35": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 0.95,
+      "primary_themes": [
+        "virgin_birth"
+      ]
+    },
+    "luke_2_5": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 0.6,
+      "primary_themes": []
+    },
+    "luke_1_31": {
+      "total_references": 2,
+      "direct_references": 2,
+      "thematic_references": 0,
+      "strongest_connection": 0.95,
+      "primary_themes": []
+    },
+    "acts_4_12": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 0.8,
+      "primary_themes": [
+        "salvation"
+      ]
+    },
+    "1_timothy_1_15": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 0.8,
+      "primary_themes": [
+        "salvation"
+      ]
+    },
+    "isaiah_7_14": {
+      "total_references": 4,
+      "direct_references": 1,
+      "thematic_references": 3,
+      "strongest_connection": 1,
+      "primary_themes": [
+        "messianic_prophecy"
+      ]
+    },
+    "micah_5_2": {
+      "total_references": 5,
+      "direct_references": 2,
+      "thematic_references": 3,
+      "strongest_connection": 1,
+      "primary_themes": [
+        "messianic_prophecy"
+      ]
+    },
+    "numbers_24_17": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 0.8,
+      "primary_themes": []
+    },
+    "revelation_22_16": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 0.6,
+      "primary_themes": []
+    },
+    "2_samuel_5_2": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 0.8,
+      "primary_themes": []
+    },
+    "hosea_11_1": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 1,
+      "primary_themes": []
+    },
+    "exodus_4_22": {
+      "total_references": 1,
+      "direct_references": 1,
+      "thematic_references": 0,
+      "strongest_connection": 0.8,
+      "primary_themes": []
+    },
+    "matthew_1_6": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "davidic_covenant"
+      ]
+    },
+    "2_samuel_7_12": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "davidic_covenant"
+      ]
+    },
+    "psalm_89_3": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "davidic_covenant"
+      ]
+    },
+    "romans_1_16": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "salvation"
+      ]
+    },
+    "matthew_1_22": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "fulfillment"
+      ]
+    },
+    "matthew_2_17": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "fulfillment"
+      ]
+    },
+    "matthew_2_23": {
+      "total_references": 3,
+      "direct_references": 0,
+      "thematic_references": 3,
+      "strongest_connection": 0,
+      "primary_themes": [
+        "fulfillment"
+      ]
+    }
+  }
+}

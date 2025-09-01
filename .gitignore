@@ -9,3 +9,15 @@ yarn-debug.log*
 yarn-error.log*
 .vscode/
 .idea/
+
+# Python virtual environments
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Data sources (not tracked)
+data-sources/
