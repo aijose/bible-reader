@@ -7,6 +7,10 @@ function PassageCard({ passage, bibleData, onNavigate }) {
   if (!verseData) return null;
 
   const bookData = bibleData?.books?.[verseData.book];
+  
+  // Skip if we don't have this book's data
+  if (!bookData) return null;
+  
   const verseText = bookData?.chapters?.[verseData.chapter]?.[verseData.verse];
   
   const reference = useMemo(() => ragSystem.formatVerseReference(passage.verse), [passage.verse]);
