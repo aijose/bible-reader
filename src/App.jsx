@@ -176,7 +176,7 @@ function App() {
         bibleData={bibleData}
       />
       
-      <main className={`transition-all duration-300 ${sidebarOpen ? 'md:mr-96' : ''}`}>
+      <main className={`transition-all duration-300 ${sidebarOpen ? 'sm:mr-96 xl:mr-[28rem]' : ''}`}>
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="bg-white rounded-lg shadow-sm p-6">
             <BibleReader
