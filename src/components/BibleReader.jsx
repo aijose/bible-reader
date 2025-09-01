@@ -1,9 +1,11 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { AlertCircle, BookOpen } from 'lucide-react';
 import { setupTextSelectionHandler } from '../utils/textSelection';
 
 function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
   const containerRef = useRef(null);
   const cleanupRef = useRef(null);
+  const [isRendering, setIsRendering] = useState(false);
   
   useEffect(() => {
     if (containerRef.current && onVerseSelect) {
@@ -23,11 +25,20 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
       }
     };
   }, [onVerseSelect, book, chapter]);
+
+  useEffect(() => {
+    if (book && chapter) {
+      setIsRendering(true);
+      const timer = setTimeout(() => setIsRendering(false), 100);
+      return () => clearTimeout(timer);
+    }
+  }, [book, chapter]);
   
   if (!book || !chapter) {
     return (
       <div className="flex items-center justify-center h-64 text-gray-500">
         <div className="text-center">
+          <BookOpen className="h-12 w-12 mx-auto mb-4 text-gray-400" />
           <p className="text-lg">Select a book and chapter to begin reading</p>
           <p className="text-sm mt-2">Use the navigation above to choose a passage</p>
         </div>
@@ -40,8 +51,25 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
     return (
       <div className="flex items-center justify-center h-64 text-gray-500">
         <div className="text-center">
-          <p className="text-lg">Chapter not found</p>
-          <p className="text-sm mt-2">Please select a valid chapter</p>
+          <AlertCircle className="h-12 w-12 mx-auto mb-4 text-red-400" />
+          <p className="text-lg">Chapter not available</p>
+          <p className="text-sm mt-2 text-gray-600">
+            {book.metadata?.name} Chapter {chapter} is not yet available
+          </p>
+          <p className="text-xs mt-1 text-gray-500">
+            Try selecting a different chapter or book
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  if (isRendering) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading chapter...</p>
         </div>
       </div>
     );
@@ -71,8 +99,8 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
                 className={`verse-container ${
                   isSelected 
                     ? 'bg-blue-50 border-l-4 border-blue-500 pl-4 py-2 rounded-r' 
-                    : 'hover:bg-gray-50 py-1'
-                } transition-colors cursor-pointer select-text`}
+                    : 'hover:bg-gray-50 active:bg-gray-100 py-1'
+                } transition-colors cursor-pointer select-text touch-manipulation`}
               >
                 <span className="verse-number inline-block w-8 text-sm font-medium text-gray-500 mr-2">
                   {verseNum}

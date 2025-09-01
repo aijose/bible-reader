@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, Book } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Book, AlertTriangle } from 'lucide-react';
 
 const NT_BOOKS = [
   { key: 'matthew', name: 'Matthew', chapters: 28 },
@@ -40,6 +40,10 @@ function Navigation({
   const currentBookData = currentBook ? NT_BOOKS.find(b => b.key === currentBook) : null;
   const maxChapter = currentBookData?.chapters || 1;
   
+  const isBookAvailable = (bookKey) => {
+    return bibleData?.books?.[bookKey] ? true : false;
+  };
+  
   const handlePrevChapter = () => {
     if (currentChapter > 1) {
       onChapterChange(currentChapter - 1);
@@ -77,10 +81,10 @@ function Navigation({
   return (
     <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
       <div className="max-w-6xl mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
           
           {/* Book Selection */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 flex-1 lg:flex-none">
             <Book className="h-5 w-5 text-gray-600" />
             <select
               value={currentBook || ''}
@@ -88,42 +92,74 @@ function Navigation({
                 onBookChange(e.target.value);
                 onChapterChange(1);
               }}
-              className="border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 lg:flex-none border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
             >
               <option value="">Select a book...</option>
               <optgroup label="Gospels">
                 {NT_BOOKS.slice(0, 4).map(book => (
-                  <option key={book.key} value={book.key}>
-                    {book.name}
+                  <option 
+                    key={book.key} 
+                    value={book.key}
+                    disabled={!isBookAvailable(book.key)}
+                  >
+                    {book.name} {!isBookAvailable(book.key) ? '(not available)' : ''}
                   </option>
                 ))}
               </optgroup>
               <optgroup label="History">
-                <option value="acts">Acts</option>
+                <option 
+                  value="acts"
+                  disabled={!isBookAvailable('acts')}
+                >
+                  Acts {!isBookAvailable('acts') ? '(not available)' : ''}
+                </option>
               </optgroup>
               <optgroup label="Pauline Epistles">
                 {NT_BOOKS.slice(5, 18).map(book => (
-                  <option key={book.key} value={book.key}>
-                    {book.name}
+                  <option 
+                    key={book.key} 
+                    value={book.key}
+                    disabled={!isBookAvailable(book.key)}
+                  >
+                    {book.name} {!isBookAvailable(book.key) ? '(not available)' : ''}
                   </option>
                 ))}
               </optgroup>
               <optgroup label="General Epistles">
                 {NT_BOOKS.slice(18, 26).map(book => (
-                  <option key={book.key} value={book.key}>
-                    {book.name}
+                  <option 
+                    key={book.key} 
+                    value={book.key}
+                    disabled={!isBookAvailable(book.key)}
+                  >
+                    {book.name} {!isBookAvailable(book.key) ? '(not available)' : ''}
                   </option>
                 ))}
               </optgroup>
               <optgroup label="Prophecy">
-                <option value="revelation">Revelation</option>
+                <option 
+                  value="revelation"
+                  disabled={!isBookAvailable('revelation')}
+                >
+                  Revelation {!isBookAvailable('revelation') ? '(not available)' : ''}
+                </option>
               </optgroup>
             </select>
           </div>
           
+          {/* Availability Status */}
+          {bibleData && (
+            <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm text-gray-600">
+              <span>{Object.keys(bibleData.books || {}).length} of {NT_BOOKS.length} books available</span>
+              {Object.keys(bibleData.books || {}).length < NT_BOOKS.length && (
+                <AlertTriangle className="h-4 w-4 text-amber-500" />
+              )}
+            </div>
+          )}
+          
           {/* Chapter Navigation */}
           {currentBook && (
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center justify-center lg:justify-start space-x-4">
               <button
                 onClick={handlePrevChapter}
                 disabled={!canGoPrev}
