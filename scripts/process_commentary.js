@@ -124,10 +124,11 @@ function parseCommentaryFile(filePath, source, bookKey) {
 function processCommentaries() {
   console.log('Starting commentary processing...');
   
-  const dataSourcesDir = path.join(process.cwd(), 'data-sources');
+  const projectRoot = path.dirname(process.cwd());
+  const dataSourcesDir = path.join(projectRoot, 'data-sources');
   const henryDir = path.join(dataSourcesDir, 'matthew_henry');
   const gillDir = path.join(dataSourcesDir, 'john_gill');
-  const outputPath = path.join(process.cwd(), 'public', 'data', 'commentaries.json');
+  const outputPath = path.join(projectRoot, 'public', 'data', 'commentaries.json');
   
   if (!fs.existsSync(henryDir) && !fs.existsSync(gillDir)) {
     console.error('Commentary source directories not found');

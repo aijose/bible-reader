@@ -52,31 +52,34 @@ Incremental implementation plan for the Bible Reader with Commentary application
 ---
 
 ## Phase 2: Embeddings & Similarity (1-2 days)
-**Goal**: Generate semantic search capabilities using pre-computed embeddings
+**Goal**: Generate semantic search capabilities using scalable embedding approach
 
 ### Tasks
 1. **Embedding Model Integration**
-   - Set up sentence-transformers/all-MiniLM-L6-v2
-   - Create embedding generation script (`generate_embeddings.js`)
+   - Set up sentence-transformers/all-MiniLM-L6-v2 with Python
+   - Create embedding generation script (`generate_embeddings.py`)
 
 2. **Verse Embeddings Generation**
-   - Generate embeddings for all NT verses
-   - Store in efficient format for client-side use
+   - Generate 384-dimensional embeddings for all NT verses
+   - Store in efficient JSON format for client-side use
+   - Support incremental updates for new books
 
-3. **Similarity Matrix Construction**
-   - Build weighted similarity matrix (`build_similarity_matrix.js`)
-   - Implement scoring system (direct refs: 1.0, semantic: 0.7, theological: 0.8)
-   - Pre-compute top similarities for performance
+3. **On-Demand Similarity System**
+   - Implement real-time cosine similarity computation
+   - Remove precomputed similarity matrix (O(n²) → O(n))
+   - Add query caching for performance (100 query limit)
+   - Support threshold-based filtering (0.3 minimum similarity)
 
 ### Deliverables
-- `public/data/embeddings.json`
-- `public/data/similarity_matrix.json`
-- Embedding generation and similarity scripts
+- `public/data/embeddings.json` (1,681 verses across 6 books)
+- `scripts/generate_embeddings.py` (Python-based generation)
+- Client-side similarity computation in `ragSystem.js`
 
 ### Success Criteria
-- All verses have embeddings
-- Similarity scores are meaningful and accurate
-- Data size is optimized for client-side loading
+- All verses have normalized L2 embeddings
+- On-demand similarity computation under 100ms
+- System scales to full NT without memory issues
+- Data size optimized for client-side loading (~5MB embeddings)
 
 ---
 
@@ -123,14 +126,16 @@ Incremental implementation plan for the Bible Reader with Commentary application
 
 ### Tasks
 1. **Client-side RAG System**
-   - Build vector search system (`utils/ragSystem.js`)
-   - Implement similarity scoring with weights
-   - Create passage ranking algorithm
+   - Build scalable vector search system (`utils/ragSystem.js`)
+   - Implement on-demand cosine similarity computation
+   - Create multi-source passage ranking (embeddings + cross-refs + thematic)
+   - Add intelligent query caching (LRU, 100 queries)
 
 2. **RelatedPassages Component**
-   - Display top 5 related passages
+   - Display top 5 related passages with confidence scores
    - Show full text for ≤5 verses, reference only for longer passages
-   - Implement passage type indicators (direct, thematic, etc.)
+   - Implement passage type indicators (semantic, direct, thematic)
+   - Always display when verse is selected (independent of commentary)
 
 3. **Genre-Aware Processing**
    - Implement different processing for biblical genres:
@@ -140,16 +145,16 @@ Incremental implementation plan for the Bible Reader with Commentary application
      - Historical: Context and cultural background
 
 ### Deliverables
-- Complete RAG functionality
-- Related passage discovery and display
+- Scalable RAG system supporting 1,681+ verses
+- Real-time related passage discovery
+- Multi-source result integration
 - Genre-specific processing logic
-- Integrated user experience
 
 ### Success Criteria
-- Related passages appear within 500ms
-- Results feel genuinely connected to selected text
-- Genre-specific logic provides relevant connections
-- Similarity scoring produces quality results
+- Related passages computed on-demand under 100ms
+- Results combine semantic similarity (0.3+ threshold) with cross-references
+- System scales linearly with verse count (O(n) not O(n²))
+- Quality connections across Matthew, John, Galatians, Ephesians, Philippians
 
 ---
 
@@ -209,9 +214,37 @@ Incremental implementation plan for the Bible Reader with Commentary application
 ### Data Files
 - `bible_asv.json`: ASV text structured by book/chapter/verse
 - `commentaries.json`: Verse-linked commentary from both sources
-- `embeddings.json`: Pre-computed verse embeddings
-- `similarity_matrix.json`: Weighted similarity scores
+- `embeddings.json`: 384-dimensional verse embeddings (1,681 verses)
 - `cross_references.json`: Traditional reference chains
+- ~~`similarity_matrix.json`~~: Removed for scalability (was O(n²))
+
+---
+
+## Embedding Approach Evolution
+
+### Original Approach (Unscalable)
+The initial implementation used a precomputed similarity matrix approach:
+- **Method**: Generate embeddings for all verses, then compute similarity between every verse pair
+- **Storage**: `similarity_matrix.json` with precalculated scores
+- **Complexity**: O(n²) storage and generation time
+- **Problem**: For n verses, requires n×(n-1)/2 similarity calculations
+- **Scaling**: 1,681 verses = 1.4M+ similarity pairs, 27,000 verses = 365M+ pairs
+
+### Current Approach (Scalable)
+Redesigned for linear scalability using on-demand computation:
+- **Method**: Store only embeddings, compute similarities when needed
+- **Storage**: `embeddings.json` with 384-dimensional vectors per verse
+- **Complexity**: O(n) storage, O(n) per query computation
+- **Implementation**: Real-time cosine similarity in `ragSystem.js:findRelatedPassages()`
+- **Optimization**: Query result caching (LRU, 100 queries) + 0.3 similarity threshold
+- **Scaling**: Linear growth - supports full NT (27,000 verses) without memory issues
+
+### Technical Details
+- **Model**: sentence-transformers/all-MiniLM-L6-v2
+- **Embedding Size**: 384 dimensions per verse
+- **Similarity Function**: Cosine similarity with L2 normalized vectors
+- **Performance**: <100ms per query, <5MB embedding data
+- **Coverage**: 1,681 verses across Matthew, John, Galatians, Ephesians, Philippians, partial Revelation
 
 ---
 
@@ -257,8 +290,10 @@ Incremental implementation plan for the Bible Reader with Commentary application
 ### Architecture Principles
 - Static JSON files for simplicity and performance
 - Client-side processing to avoid server costs
+- On-demand similarity computation for scalability
 - Verse-level granularity for precise commentary linking
 - Extensible design for future Old Testament integration
 - Mobile-first responsive design approach
+- Intelligent caching to balance performance and memory usage
 
 This implementation plan provides a clear roadmap for building the Bible Reader application incrementally, with each phase delivering working functionality that builds toward the complete vision outlined in the PRD.

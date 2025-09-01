@@ -22,7 +22,12 @@
       "Bash(npm run build:*)",
       "Bash(grep:*)",
       "Bash(jq:*)",
-      "Bash(uv run:*)"
+      "Bash(uv run:*)",
+      "WebFetch(domain:sacred-texts.com)",
+      "WebFetch(domain:sacred-texts.com)",
+      "WebFetch(domain:sacred-texts.com)",
+      "WebFetch(domain:sacred-texts.com)",
+      "WebFetch(domain:www.studylight.org)"
     ],
     "deny": []
   }
