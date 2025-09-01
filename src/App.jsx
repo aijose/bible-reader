@@ -22,6 +22,15 @@ function App() {
         setLoading(true);
         setLoadingProgress({ step: 'Loading Bible text...', progress: 20 });
         
+        // Force clear cache for debugging Revelation issue
+        if (localStorage.getItem('bible_asv_data')) {
+          const cached = JSON.parse(localStorage.getItem('bible_asv_data'));
+          if (cached.version !== '1.8') {
+            console.log('🗑️ Clearing old Bible cache...');
+            localStorage.removeItem('bible_asv_data');
+          }
+        }
+        
         const bible = await loadBibleData();
         console.log('📚 Loaded Bible data:', { 
           totalBooks: Object.keys(bible.books || {}).length,

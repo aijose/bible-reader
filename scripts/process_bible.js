@@ -54,8 +54,9 @@ function cleanVerseText(text) {
 function processBibleText() {
   console.log('Starting ASV Bible text processing...');
   
-  const dataSourcesDir = path.join(process.cwd(), 'data-sources', 'asv_bible');
-  const outputPath = path.join(process.cwd(), 'public', 'data', 'bible_asv.json');
+  const projectRoot = path.dirname(process.cwd());
+  const dataSourcesDir = path.join(projectRoot, 'data-sources', 'asv_bible');
+  const outputPath = path.join(projectRoot, 'public', 'data', 'bible_asv.json');
   
   if (!fs.existsSync(dataSourcesDir)) {
     console.error(`Data sources directory not found: ${dataSourcesDir}`);

@@ -17,7 +17,7 @@ function getCachedData(key) {
     const now = Date.now();
     
     // Check version compatibility (invalidate old cache formats)
-    if (version !== '1.6') {
+    if (version !== '1.8') {
       localStorage.removeItem(key);
       return null;
     }
@@ -50,7 +50,7 @@ function setCachedData(key, data) {
     const cacheEntry = {
       data,
       timestamp: Date.now(),
-      version: '1.6'
+      version: '1.8'
     };
     localStorage.setItem(key, JSON.stringify(cacheEntry));
     console.log(`💾 Cached ${key} (${(JSON.stringify(cacheEntry).length / 1024).toFixed(1)}KB)`);
@@ -67,8 +67,10 @@ async function fetchJsonData(url, cacheKey) {
   }
   
   try {
+    // Add cache buster to force fresh data
+    const cacheBustedUrl = `${url}?v=${Date.now()}`;
     console.log(`📦 Fetching ${url}...`);
-    const response = await fetch(url);
+    const response = await fetch(cacheBustedUrl);
     
     if (!response.ok) {
       if (response.status === 404) {
