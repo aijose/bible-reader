@@ -38,7 +38,8 @@ function Navigation({
   bibleData 
 }) {
   const currentBookData = currentBook ? bibleData?.books?.[currentBook] : null;
-  const maxChapter = currentBookData ? Object.keys(currentBookData.chapters || {}).length : 1;
+  const availableChapters = currentBookData ? Object.keys(currentBookData.chapters || {}).map(Number).sort((a, b) => a - b) : [];
+  const maxChapter = availableChapters.length > 0 ? Math.max(...availableChapters) : 1;
   
   const isBookAvailable = (bookKey) => {
     const book = bibleData?.books?.[bookKey];
@@ -46,16 +47,19 @@ function Navigation({
   };
   
   const handlePrevChapter = () => {
-    if (currentChapter > 1) {
-      onChapterChange(currentChapter - 1);
+    const currentIndex = availableChapters.indexOf(currentChapter);
+    if (currentIndex > 0) {
+      // Go to previous available chapter in same book
+      onChapterChange(availableChapters[currentIndex - 1]);
     } else if (currentBook) {
       // Go to previous available book's last chapter
-      const currentIndex = NT_BOOKS.findIndex(b => b.key === currentBook);
-      for (let i = currentIndex - 1; i >= 0; i--) {
+      const bookIndex = NT_BOOKS.findIndex(b => b.key === currentBook);
+      for (let i = bookIndex - 1; i >= 0; i--) {
         const prevBook = NT_BOOKS[i];
         if (isBookAvailable(prevBook.key)) {
           const prevBookData = bibleData?.books?.[prevBook.key];
-          const lastChapter = prevBookData ? Object.keys(prevBookData.chapters || {}).length : 1;
+          const prevBookChapters = prevBookData ? Object.keys(prevBookData.chapters || {}).map(Number).sort((a, b) => a - b) : [];
+          const lastChapter = prevBookChapters.length > 0 ? Math.max(...prevBookChapters) : 1;
           onBookChange(prevBook.key);
           onChapterChange(lastChapter);
           break;
@@ -65,27 +69,33 @@ function Navigation({
   };
   
   const handleNextChapter = () => {
-    if (currentChapter < maxChapter) {
-      onChapterChange(currentChapter + 1);
+    const currentIndex = availableChapters.indexOf(currentChapter);
+    if (currentIndex >= 0 && currentIndex < availableChapters.length - 1) {
+      // Go to next available chapter in same book
+      onChapterChange(availableChapters[currentIndex + 1]);
     } else if (currentBook) {
       // Go to next available book's first chapter
-      const currentIndex = NT_BOOKS.findIndex(b => b.key === currentBook);
-      for (let i = currentIndex + 1; i < NT_BOOKS.length; i++) {
+      const bookIndex = NT_BOOKS.findIndex(b => b.key === currentBook);
+      for (let i = bookIndex + 1; i < NT_BOOKS.length; i++) {
         const nextBook = NT_BOOKS[i];
         if (isBookAvailable(nextBook.key)) {
+          const nextBookData = bibleData?.books?.[nextBook.key];
+          const nextBookChapters = nextBookData ? Object.keys(nextBookData.chapters || {}).map(Number).sort((a, b) => a - b) : [];
+          const firstChapter = nextBookChapters.length > 0 ? Math.min(...nextBookChapters) : 1;
           onBookChange(nextBook.key);
-          onChapterChange(1);
+          onChapterChange(firstChapter);
           break;
         }
       }
     }
   };
   
-  const canGoPrev = currentChapter > 1 || 
+  const currentChapterIndex = availableChapters.indexOf(currentChapter);
+  const canGoPrev = currentChapterIndex > 0 || 
     (currentBook && NT_BOOKS.findIndex(b => b.key === currentBook) > 0 && 
      NT_BOOKS.slice(0, NT_BOOKS.findIndex(b => b.key === currentBook)).some(book => isBookAvailable(book.key)));
   
-  const canGoNext = currentChapter < maxChapter || 
+  const canGoNext = currentChapterIndex >= 0 && currentChapterIndex < availableChapters.length - 1 || 
     (currentBook && NT_BOOKS.findIndex(b => b.key === currentBook) < NT_BOOKS.length - 1 &&
      NT_BOOKS.slice(NT_BOOKS.findIndex(b => b.key === currentBook) + 1).some(book => isBookAvailable(book.key)));
   
@@ -191,13 +201,13 @@ function Navigation({
                   onChange={(e) => onChapterChange(parseInt(e.target.value))}
                   className="border border-gray-300 rounded px-2 py-1 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 >
-                  {Array.from({ length: maxChapter }, (_, i) => i + 1).map(num => (
+                  {availableChapters.map(num => (
                     <option key={num} value={num}>
                       {num}
                     </option>
                   ))}
                 </select>
-                <span className="text-sm text-gray-400">of {maxChapter}</span>
+                <span className="text-sm text-gray-400">of {availableChapters.length} available</span>
               </div>
               
               <button

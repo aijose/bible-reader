@@ -70,6 +70,18 @@ function App() {
     setCurrentBook(bookKey);
     setSelectedVerse(null);
     setSidebarOpen(false);
+    
+    // Auto-navigate to first available chapter for books with non-consecutive chapters
+    const bookData = bibleData?.books?.[bookKey];
+    if (bookData) {
+      const availableChapters = Object.keys(bookData.chapters || {}).map(Number).sort((a, b) => a - b);
+      const firstChapter = availableChapters.length > 0 ? Math.min(...availableChapters) : 1;
+      if (firstChapter !== 1) {
+        setCurrentChapter(firstChapter);
+      } else {
+        setCurrentChapter(1);
+      }
+    }
   };
 
   const handleChapterChange = (chapter) => {
