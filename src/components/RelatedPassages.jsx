@@ -34,11 +34,6 @@ function PassageCard({ passage, bibleData, onNavigate }) {
           <Tag className="h-3 w-3 mr-1" />
           {connectionLabel}
         </span>
-        {passage.reason && (
-          <span className="ml-2 text-xs text-gray-500">
-            ({passage.reason.replace(/_/g, ' ')})
-          </span>
-        )}
       </div>
       
       {/* Verse text */}
