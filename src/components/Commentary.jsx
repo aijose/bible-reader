@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { X, ChevronDown, ChevronRight, User, Tag } from 'lucide-react';
 import RelatedPassages from './RelatedPassages';
+import ragSystem from '../utils/ragSystem';
 
 function CommentarySection({ commentary, isExpanded, onToggleExpand }) {
   const showPreview = !isExpanded && commentary.text.length > 200;
@@ -106,7 +107,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
         
         {selectedVerse && (
           <p className="text-sm text-gray-600 mt-2">
-            {selectedVerse.replace(/_/g, ' ').replace(/(\w+)\s(\d+)\s(\d+)/, '$1 $2:$3')}
+            {ragSystem.formatVerseReference(selectedVerse)}
           </p>
         )}
       </div>
