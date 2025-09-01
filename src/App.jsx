@@ -3,6 +3,7 @@ import Navigation from './components/Navigation';
 import BibleReader from './components/BibleReader';
 import Commentary from './components/Commentary';
 import { loadBibleData, loadCommentaries, clearCache } from './utils/dataLoader';
+import ragSystem from './utils/ragSystem';
 
 function App() {
   const [bibleData, setBibleData] = useState(null);
@@ -31,11 +32,21 @@ function App() {
         
         const commentaryData = await loadCommentaries();
         setCommentaries(commentaryData);
-        setLoadingProgress({ step: 'Initializing...', progress: 90 });
+        setLoadingProgress({ step: 'Initializing RAG system...', progress: 80 });
+        
+        // Initialize RAG system
+        try {
+          console.log('🔧 Starting RAG system initialization...');
+          await ragSystem.initialize();
+          console.log('✅ RAG system initialization complete');
+        } catch (ragError) {
+          console.error('❌ RAG system initialization failed:', ragError);
+          // Continue without RAG system
+        }
+        setLoadingProgress({ step: 'Complete', progress: 100 });
         
         // Small delay to show completion
         await new Promise(resolve => setTimeout(resolve, 200));
-        setLoadingProgress({ step: 'Complete', progress: 100 });
         
         setError(null);
       } catch (err) {

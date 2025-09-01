@@ -107,8 +107,9 @@ def main():
     print("Starting Bible verse embedding generation...")
     
     # Paths
-    bible_path = os.path.join(os.getcwd(), 'public', 'data', 'bible_asv.json')
-    output_path = os.path.join(os.getcwd(), 'public', 'data', 'embeddings.json')
+    project_root = os.path.dirname(os.getcwd())
+    bible_path = os.path.join(project_root, 'public', 'data', 'bible_asv.json')
+    output_path = os.path.join(project_root, 'public', 'data', 'embeddings.json')
     
     # Load Bible data
     verses_data = load_bible_data(bible_path)

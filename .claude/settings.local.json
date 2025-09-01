@@ -21,7 +21,8 @@
       "Bash(uv venv:*)",
       "Bash(npm run build:*)",
       "Bash(grep:*)",
-      "Bash(jq:*)"
+      "Bash(jq:*)",
+      "Bash(uv run:*)"
     ],
     "deny": []
   }

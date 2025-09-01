@@ -1,8 +1,8 @@
-import { loadSimilarityMatrix, loadCrossReferences } from './dataLoader';
+import { loadEmbeddings, loadCrossReferences } from './dataLoader';
 
 class RAGSystem {
   constructor() {
-    this.similarityMatrix = null;
+    this.embeddings = null;
     this.crossReferences = null;
     this.isLoaded = false;
     this.queryCache = new Map();
@@ -14,31 +14,60 @@ class RAGSystem {
 
     try {
       console.log('🔧 Loading RAG system data...');
-      const [similarities, crossRefs] = await Promise.all([
-        loadSimilarityMatrix(),
-        loadCrossReferences()
-      ]);
+      
+      let embeddingsData, crossRefs;
+      try {
+        embeddingsData = await loadEmbeddings();
+        console.log('✅ Embeddings loaded successfully');
+      } catch (embError) {
+        console.error('❌ Failed to load embeddings:', embError);
+        throw embError;
+      }
+      
+      try {
+        crossRefs = await loadCrossReferences();
+        console.log('✅ Cross-references loaded successfully');
+      } catch (refError) {
+        console.warn('⚠️ Cross-references failed to load:', refError);
+        crossRefs = null;
+      }
 
-      if (!similarities?.similarities) {
-        throw new Error('Similarity matrix data is missing or invalid');
+      if (!embeddingsData?.verse_embeddings) {
+        throw new Error('Embeddings data is missing or invalid');
       }
 
       if (!crossRefs) {
-        console.warn('⚠️ Cross-references data not available, continuing with similarities only');
+        console.warn('⚠️ Cross-references data not available, continuing with embeddings only');
       }
 
-      this.similarityMatrix = similarities;
+      this.embeddings = embeddingsData.verse_embeddings;
       this.crossReferences = crossRefs;
       this.isLoaded = true;
       
-      const simCount = Object.keys(similarities.similarities || {}).length;
+      const embCount = Object.keys(this.embeddings || {}).length;
       const refCount = Object.keys(crossRefs?.direct_references || {}).length;
-      console.log(`✅ RAG system initialized: ${simCount} similarity entries, ${refCount} cross-references`);
+      console.log(`✅ RAG system initialized: ${embCount} verse embeddings, ${refCount} cross-references`);
     } catch (error) {
       console.error('❌ Error initializing RAG system:', error);
       this.isLoaded = false;
       throw new Error(`RAG system initialization failed: ${error.message}`);
     }
+  }
+
+  cosineSimilarity(vecA, vecB) {
+    if (vecA.length !== vecB.length) return 0;
+    
+    let dotProduct = 0;
+    let normA = 0;
+    let normB = 0;
+    
+    for (let i = 0; i < vecA.length; i++) {
+      dotProduct += vecA[i] * vecB[i];
+      normA += vecA[i] * vecA[i];
+      normB += vecB[i] * vecB[i];
+    }
+    
+    return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
   }
 
   async findRelatedPassages(verseId, maxResults = 5) {
@@ -60,28 +89,56 @@ class RAGSystem {
     try {
       const results = [];
 
-      // Get semantic similarities
-      const semanticSimilarities = this.similarityMatrix?.similarities?.[verseId] || [];
+      // Get query verse embedding
+      const queryEmbedding = this.embeddings[verseId];
+      console.log('🔍 RAG Debug:', { 
+        verseId, 
+        hasEmbedding: !!queryEmbedding, 
+        totalEmbeddings: Object.keys(this.embeddings).length,
+        sampleKeys: Object.keys(this.embeddings).slice(0, 5)
+      });
+      
+      if (!queryEmbedding) {
+        console.warn(`No embedding found for verse: ${verseId}`);
+        return [];
+      }
+
+      // Compute similarities on-demand
+      const similarities = [];
+      const threshold = 0.3;
+      
+      for (const [candidateVerse, candidateEmbedding] of Object.entries(this.embeddings)) {
+        if (candidateVerse === verseId) continue;
+        
+        const similarity = this.cosineSimilarity(queryEmbedding, candidateEmbedding);
+        if (similarity > threshold) {
+          similarities.push({
+            verse: candidateVerse,
+            score: similarity,
+            type: 'semantic',
+            reason: 'textual_similarity',
+            source: 'embeddings'
+          });
+        }
+      }
+
+      // Sort by similarity score and take top results
+      similarities.sort((a, b) => b.score - a.score);
+      const topSimilarities = similarities.slice(0, maxResults);
       
       // Get direct cross-references
       const directRefs = this.crossReferences?.direct_references?.[verseId] || [];
       
       // Get thematic connections
       const thematicConnections = this.crossReferences?.thematic_connections?.[verseId] || {};
+      
+      // Combine all results with weights
+      const allResults = new Map();
 
-    // Combine all results with weights
-    const allResults = new Map();
-
-    // Add semantic similarities
-    for (const sim of semanticSimilarities) {
-      allResults.set(sim.verse, {
-        verse: sim.verse,
-        score: sim.score,
-        type: 'semantic',
-        reason: 'textual_similarity',
-        source: 'embeddings'
-      });
-    }
+      // Add semantic similarities
+      for (const sim of topSimilarities) {
+        allResults.set(sim.verse, sim);
+      }
 
     // Add direct references (higher weight)
     for (const ref of directRefs) {
