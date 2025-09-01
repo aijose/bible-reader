@@ -176,7 +176,7 @@ function App() {
         bibleData={bibleData}
       />
       
-      <main className={`transition-all duration-300`} style={{ marginRight: sidebarOpen ? '400px' : '0' }}>
+      <main className="transition-all duration-300">
         <div className="max-w-4xl mx-auto px-4 py-6">
           <div className="bg-white rounded-lg shadow-sm p-6">
             <BibleReader

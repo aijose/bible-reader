@@ -85,10 +85,10 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
   
   return (
     <>
-      {/* Desktop Sidebar */}
-      <div className={`hidden sm:block fixed inset-y-0 right-0 bg-gray-50 border-l border-gray-200 transform transition-transform duration-300 z-20 ${
-        isOpen ? 'translate-x-0' : 'translate-x-full'
-      }`} style={{ width: '400px', minWidth: '400px', maxWidth: '400px' }}>
+      {/* Full Width Commentary */}
+      <div className={`fixed inset-0 bg-gray-50 transform transition-transform duration-300 z-20 ${
+        isOpen ? 'translate-y-0' : 'translate-y-full'
+      }`}>
       
       {/* Header */}
       <div className="bg-white border-b border-gray-200 p-4">
@@ -155,71 +155,6 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
             <p>Commentary sources: Matthew Henry, John Gill</p>
             <p className="mt-1">Public domain materials</p>
           </div>
-        </div>
-      </div>
-
-      {/* Mobile Bottom Sheet */}
-      <div className={`sm:hidden fixed inset-x-0 bottom-0 bg-gray-50 border-t border-gray-200 transform transition-transform duration-300 z-50 shadow-2xl ${
-        isOpen ? 'translate-y-0' : 'translate-y-full'
-      }`} style={{ height: '50vh', maxHeight: '500px' }}>
-        
-        {/* Mobile Header */}
-        <div className="bg-white border-b border-gray-200 p-4">
-          <div className="flex items-center justify-between">
-            <h3 className="text-lg font-semibold text-gray-900">
-              Commentary
-            </h3>
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
-          
-          {selectedVerse && (
-            <p className="text-sm text-gray-600 mt-2">
-              {selectedVerse.replace(/_/g, ' ').replace(/(\w+)\s(\d+)\s(\d+)/, '$1 $2:$3')}
-            </p>
-          )}
-        </div>
-        
-        {/* Mobile Content */}
-        <div className="flex-1 overflow-y-auto p-4">
-          {!selectedVerse ? (
-            <div className="flex items-center justify-center h-32 text-gray-500">
-              <div className="text-center">
-                <p className="text-lg mb-2">No verse selected</p>
-                <p className="text-sm">Tap a verse above to view commentary</p>
-              </div>
-            </div>
-          ) : !verseCommentaries || verseCommentaries.length === 0 ? (
-            <div className="flex items-center justify-center h-32 text-gray-500">
-              <div className="text-center">
-                <p className="text-lg mb-2">No commentary available</p>
-                <p className="text-sm">Commentary for this verse is not yet available</p>
-              </div>
-            </div>
-          ) : (
-            <div className="space-y-4">
-              {verseCommentaries.map((commentary, index) => (
-                <CommentarySection
-                  key={`${commentary.source}-${index}`}
-                  commentary={commentary}
-                  isExpanded={expandedSections[commentary.source]}
-                  onToggleExpand={() => toggleSection(commentary.source)}
-                />
-              ))}
-            </div>
-          )}
-          
-          {/* Related Passages Section */}
-          <RelatedPassages
-            selectedVerse={selectedVerse}
-            bibleData={bibleData}
-            onNavigate={onNavigate}
-            isOpen={isOpen && selectedVerse}
-          />
         </div>
       </div>
     </>
