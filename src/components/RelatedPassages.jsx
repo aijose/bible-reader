@@ -16,7 +16,7 @@ function PassageCard({ passage, bibleData, onNavigate }) {
   const shouldShowFullText = verseText && verseText.length <= 200;
   
   return (
-    <div className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow cursor-pointer"
+    <div className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer"
          onClick={() => onNavigate(verseData.book, verseData.chapter)}>
       
       {/* Header */}
@@ -29,7 +29,7 @@ function PassageCard({ passage, bibleData, onNavigate }) {
       </div>
       
       {/* Connection type */}
-      <div className="mb-3">
+      <div className="mb-2">
         <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${connectionColor}`}>
           <Tag className="h-3 w-3 mr-1" />
           {connectionLabel}
@@ -136,7 +136,7 @@ function RelatedPassages({ selectedVerse, bibleData, onNavigate, isOpen }) {
             </p>
           </div>
         ) : (
-          <div className="space-y-3">
+          <div className="space-y-2 max-h-64 overflow-y-auto">
             {relatedPassages.map((passage, index) => (
               <PassageCard
                 key={`${passage.verse}-${index}`}
