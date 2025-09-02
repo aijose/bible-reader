@@ -24,14 +24,12 @@ function PassageCard({ passage, bibleData, onNavigate }) {
          onClick={() => onNavigate(verseData.book, verseData.chapter)}>
       
       {/* Header */}
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
-            <BookOpen className="h-4 w-4 text-green-700" />
-          </div>
-          <h4 className="font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{reference}</h4>
+      <div className="flex items-center space-x-3 mb-3">
+        <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
+          <BookOpen className="h-4 w-4 text-green-700" />
         </div>
-        <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors ml-2" />
+        <h4 className="font-bold text-gray-900 group-hover:text-blue-700 transition-colors flex-1">{reference}</h4>
+        <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
       </div>
       
       {/* Connection type and similarity */}

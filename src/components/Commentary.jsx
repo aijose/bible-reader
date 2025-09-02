@@ -10,10 +10,7 @@ function CommentarySection({ commentary, isExpanded, onToggleExpand }) {
   return (
     <div className="card-elevated p-6 w-full hover:shadow-xl transition-all duration-300">
       <div className="mb-4">
-        <div className="flex items-center space-x-2 mb-2">
-          <h4 className="font-bold text-gray-900 text-lg">{commentary.source}</h4>
-          <span className="text-xs text-gray-500">({commentary.length} chars)</span>
-        </div>
+        <h4 className="font-bold text-gray-900 text-lg mb-2">{commentary.source}</h4>
         <div className="flex items-center space-x-2">
           {commentary.theological_tags && commentary.theological_tags.map(tag => (
             <span key={tag} className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
@@ -79,27 +76,25 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
       
       {/* Beautiful Header */}
       <div className="glass-effect border-b border-white/20 p-6 w-full">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
-              <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-              </svg>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold gradient-text">
-                Commentary & Insights
-              </h3>
-              {selectedVerse && (
-                <p className="text-sm text-gray-600 font-medium mt-1">
-                  {ragSystem.formatVerseReference(selectedVerse)}
-                </p>
-              )}
-            </div>
+        <div className="flex items-center space-x-4 w-full">
+          <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+            <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div className="flex-1">
+            <h3 className="text-xl font-bold gradient-text">
+              Commentary & Insights
+            </h3>
+            {selectedVerse && (
+              <p className="text-sm text-gray-600 font-medium mt-1">
+                {ragSystem.formatVerseReference(selectedVerse)}
+              </p>
+            )}
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 hover:bg-white/60 rounded-xl transition-all duration-200"
+            className="p-2 text-gray-400 hover:text-gray-600 hover:bg-white/60 rounded-xl transition-all duration-200 ml-4"
           >
             <X className="h-6 w-6" />
           </button>
