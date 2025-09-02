@@ -94,7 +94,7 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-400 hover:text-gray-600 hover:bg-white/60 rounded-xl transition-all duration-200 ml-4"
+            className="p-2 text-gray-400 hover:text-gray-600 hover:bg-white/60 rounded-xl transition-all duration-200 mr-4"
           >
             <X className="h-6 w-6" />
           </button>
