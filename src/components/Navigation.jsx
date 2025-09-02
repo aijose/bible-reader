@@ -115,7 +115,7 @@ function Navigation({
                 onBookChange(e.target.value);
                 onChapterChange(1);
               }}
-              className="flex-1 lg:flex-none border-2 border-gray-200 bg-white/90 backdrop-blur-sm rounded-xl px-4 py-8 text-gray-900 font-semibold shadow-lg focus:ring-2 focus:ring-blue-500 focus:bg-white focus:border-blue-300 transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300"
+              className="flex-1 lg:flex-none border-2 border-gray-200 bg-white/90 backdrop-blur-sm rounded-xl px-6 py-6 text-lg text-gray-900 font-semibold shadow-lg focus:ring-2 focus:ring-blue-500 focus:bg-white focus:border-blue-300 transition-all duration-200 appearance-none cursor-pointer hover:border-gray-300 min-h-16"
               style={{backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e\")", backgroundPosition: "right 12px center", backgroundRepeat: "no-repeat", backgroundSize: "16px"}}
             >
               <option value="">Select a book...</option>
