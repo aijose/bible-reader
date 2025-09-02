@@ -9,25 +9,18 @@ function CommentarySection({ commentary, isExpanded, onToggleExpand }) {
   
   return (
     <div className="card-elevated p-6 w-full hover:shadow-xl transition-all duration-300">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
-            <User className="h-5 w-5 text-blue-700" />
-          </div>
-          <div>
-            <h4 className="font-bold text-gray-900 text-lg">{commentary.source}</h4>
-            <div className="flex items-center space-x-2 mt-1">
-              {commentary.theological_tags && commentary.theological_tags.map(tag => (
-                <span key={tag} className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
-                  <Tag className="h-3 w-3 mr-1" />
-                  {tag}
-                </span>
-              ))}
-            </div>
-          </div>
+      <div className="mb-4">
+        <div className="flex items-center space-x-2 mb-2">
+          <h4 className="font-bold text-gray-900 text-lg">{commentary.source}</h4>
+          <span className="text-xs text-gray-500">({commentary.length} chars)</span>
         </div>
-        <div className="text-xs text-gray-500 bg-gray-50 px-2 py-1 rounded-lg">
-          {commentary.length} chars
+        <div className="flex items-center space-x-2">
+          {commentary.theological_tags && commentary.theological_tags.map(tag => (
+            <span key={tag} className="inline-flex items-center px-2 py-1 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+              <Tag className="h-3 w-3 mr-1" />
+              {tag}
+            </span>
+          ))}
         </div>
       </div>
       
@@ -135,11 +128,6 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
               {!verseCommentaries || verseCommentaries.length === 0 ? (
                 <div className="flex items-center justify-center h-32 text-gray-500">
                   <div className="text-center">
-                    <div className="w-16 h-16 bg-white/60 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
-                      <svg className="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                    </div>
                     <h4 className="text-lg font-bold text-gray-900 mb-2">Commentary coming soon</h4>
                     <p className="text-sm text-gray-600">Commentary for this verse is not yet available</p>
                   </div>

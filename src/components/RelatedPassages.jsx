@@ -41,7 +41,7 @@ function PassageCard({ passage, bibleData, onNavigate }) {
             <Tag className="h-3 w-3 mr-1" />
             {connectionLabel}
           </span>
-          <span className="text-xs font-medium text-gray-600">{(passage.score * 100).toFixed(0)}% similarity</span>
+          <span className="text-xs font-medium text-gray-600">({(passage.score * 100).toFixed(0)}%)</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-1.5">
           <div 
