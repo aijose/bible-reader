@@ -27,7 +27,14 @@
       "WebFetch(domain:sacred-texts.com)",
       "WebFetch(domain:sacred-texts.com)",
       "WebFetch(domain:sacred-texts.com)",
-      "WebFetch(domain:www.studylight.org)"
+      "WebFetch(domain:www.studylight.org)",
+      "Bash(awk:*)",
+      "WebFetch(domain:www.biblestudytools.com)",
+      "WebFetch(domain:www.christianstudylibrary.org)",
+      "WebFetch(domain:www.christianity.com)",
+      "WebFetch(domain:biblehub.com)",
+      "WebFetch(domain:johngill.thekingsbible.com)",
+      "WebFetch(domain:www.bibliaplus.org)"
     ],
     "deny": []
   }
