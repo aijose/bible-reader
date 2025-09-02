@@ -20,44 +20,47 @@ function PassageCard({ passage, bibleData, onNavigate }) {
   const shouldShowFullText = verseText && verseText.length <= 200;
   
   return (
-    <div className="border border-gray-200 rounded-lg p-3 hover:shadow-md transition-shadow cursor-pointer"
+    <div className="card-elevated p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-[1.02]"
          onClick={() => onNavigate(verseData.book, verseData.chapter)}>
       
       {/* Header */}
-      <div className="flex items-start justify-between mb-2">
-        <div className="flex items-center space-x-2">
-          <BookOpen className="h-4 w-4 text-gray-600" />
-          <h4 className="font-semibold text-gray-900">{reference}</h4>
+      <div className="flex items-start justify-between mb-3">
+        <div className="flex items-center space-x-3">
+          <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
+            <BookOpen className="h-4 w-4 text-green-700" />
+          </div>
+          <h4 className="font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{reference}</h4>
         </div>
-        <ExternalLink className="h-3 w-3 text-gray-400" />
+        <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
       </div>
       
-      {/* Connection type */}
-      <div className="mb-2">
-        <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${connectionColor}`}>
+      {/* Connection type and similarity */}
+      <div className="flex items-center justify-between mb-3">
+        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${connectionColor}`}>
           <Tag className="h-3 w-3 mr-1" />
           {connectionLabel}
         </span>
+        <div className="flex items-center space-x-2">
+          <div className="w-16 bg-gray-200 rounded-full h-1.5">
+            <div 
+              className="bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 rounded-full transition-all duration-300"
+              style={{ width: `${Math.min(100, passage.score * 100)}%` }}
+            ></div>
+          </div>
+          <span className="text-xs font-medium text-gray-600">{(passage.score * 100).toFixed(0)}%</span>
+        </div>
       </div>
       
       {/* Verse text */}
       {verseText && (
-        <div className="text-gray-700 text-sm leading-relaxed">
+        <div className="text-gray-700 font-serif leading-relaxed">
           {shouldShowFullText ? (
-            <p>"{verseText}"</p>
+            <p className="text-sm italic">"{verseText}"</p>
           ) : (
-            <p className="italic">Click to view verse</p>
+            <p className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors">Click to view full verse</p>
           )}
         </div>
       )}
-      
-      {/* Similarity score */}
-      <div className="mt-2 pt-2 border-t border-gray-100">
-        <div className="flex justify-between items-center text-xs text-gray-500">
-          <span>Similarity: {(passage.score * 100).toFixed(1)}%</span>
-          <span className="capitalize">{passage.source}</span>
-        </div>
-      </div>
     </div>
   );
 }
@@ -110,42 +113,66 @@ function RelatedPassages({ selectedVerse, bibleData, onNavigate, isOpen }) {
   if (!isOpen) return null;
 
   return (
-    <div className="border-t border-gray-200 bg-gray-50 flex-shrink-0 h-40 flex flex-col">
-      <div className="p-3 flex-shrink-0">
-        <h3 className="text-base font-semibold text-gray-900 mb-2">
-          Related Passages
-        </h3>
+    <div className="border-t border-white/30 bg-gradient-to-br from-white/60 to-blue-50/60 backdrop-blur-sm flex-shrink-0 min-h-96 flex flex-col">
+      <div className="p-6 flex-shrink-0">
+        <div className="flex items-center space-x-3 mb-4">
+          <div className="w-10 h-10 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+            <svg className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="text-lg font-bold gradient-text">
+              Related Passages
+            </h3>
+            <p className="text-sm text-gray-600 font-medium">AI-powered semantic connections</p>
+          </div>
+        </div>
       </div>
       
-      <div className="flex-1 overflow-y-auto px-3 pb-3">
+      <div className="flex-1 overflow-y-auto px-6 pb-6">
         {loading ? (
-          <div className="flex items-center justify-center py-4">
-            <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"></div>
-            <span className="ml-2 text-gray-600 text-sm">Finding related passages...</span>
+          <div className="flex items-center justify-center py-8">
+            <div className="text-center">
+              <div className="relative mb-4">
+                <div className="w-12 h-12 mx-auto">
+                  <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
+                  <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-green-500 border-r-emerald-500 animate-spin"></div>
+                </div>
+              </div>
+              <span className="text-gray-600 font-medium">Discovering connections...</span>
+            </div>
           </div>
         ) : error ? (
-          <div className="text-center py-4">
-            <AlertCircle className="h-6 w-6 mx-auto mb-2 text-red-500" />
-            <p className="text-red-600 mb-1 font-medium text-sm">Unable to load related passages</p>
-            <p className="text-gray-600 text-xs mb-3">{error}</p>
+          <div className="text-center py-8">
+            <div className="w-16 h-16 bg-white/60 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <AlertCircle className="h-8 w-8 text-red-500" />
+            </div>
+            <h4 className="text-lg font-bold text-gray-900 mb-2">Connection error</h4>
+            <p className="text-gray-600 text-sm mb-4">{error}</p>
             <button
               onClick={handleRetry}
-              className="inline-flex items-center space-x-1 px-2 py-1 bg-blue-600 text-white text-xs rounded hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:shadow-lg transition-all duration-200 font-medium"
             >
-              <RefreshCw className="h-3 w-3" />
-              <span>Retry</span>
+              <RefreshCw className="h-4 w-4" />
+              <span>Try Again</span>
             </button>
           </div>
         ) : relatedPassages.length === 0 ? (
-          <div className="text-center py-4">
-            <p className="text-gray-500 text-sm">No related passages found</p>
-            <p className="text-gray-400 text-xs mt-1">
-              Try selecting a different verse
+          <div className="text-center py-8">
+            <div className="w-16 h-16 bg-white/60 backdrop-blur-sm rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-lg">
+              <svg className="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <h4 className="text-lg font-bold text-gray-900 mb-2">No connections found</h4>
+            <p className="text-sm text-gray-600">
+              Try selecting a different verse to discover semantic connections
             </p>
           </div>
         ) : (
           <>
-            <div className="space-y-2">
+            <div className="space-y-4 animate-scale-in">
               {relatedPassages.map((passage, index) => (
                 <PassageCard
                   key={`${passage.verse}-${index}`}
@@ -156,10 +183,12 @@ function RelatedPassages({ selectedVerse, bibleData, onNavigate, isOpen }) {
               ))}
             </div>
             
-            <div className="mt-2 pt-2 border-t border-gray-200 flex-shrink-0">
-              <p className="text-xs text-gray-500">
-                Showing top {relatedPassages.length} most relevant passages
-              </p>
+            <div className="mt-6 pt-4 border-t border-white/40 flex-shrink-0">
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl px-4 py-3 shadow-sm">
+                <p className="text-xs text-gray-600 font-medium text-center">
+                  Showing top {relatedPassages.length} most relevant passages • Powered by AI semantic search
+                </p>
+              </div>
             </div>
           </>
         )}

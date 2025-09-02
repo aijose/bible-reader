@@ -100,20 +100,22 @@ function Navigation({
      NT_BOOKS.slice(NT_BOOKS.findIndex(b => b.key === currentBook) + 1).some(book => isBookAvailable(book.key)));
   
   return (
-    <div className="bg-white border-b border-gray-200 sticky top-0 z-10">
-      <div className="max-w-6xl mx-auto px-4 py-3">
-        <div className="flex flex-col space-y-3 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
+    <div className="sticky top-0 z-20 glass-effect border-b border-white/30">
+      <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
           
           {/* Book Selection */}
           <div className="flex items-center space-x-4 flex-1 lg:flex-none">
-            <Book className="h-5 w-5 text-gray-600" />
+            <div className="p-2 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl">
+              <Book className="h-6 w-6 text-blue-700" />
+            </div>
             <select
               value={currentBook || ''}
               onChange={(e) => {
                 onBookChange(e.target.value);
                 onChapterChange(1);
               }}
-              className="flex-1 lg:flex-none border border-gray-300 rounded-md px-3 py-2 bg-white text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="flex-1 lg:flex-none border-0 bg-white/80 backdrop-blur-sm rounded-xl px-4 py-3 text-gray-900 font-medium shadow-lg focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all duration-200"
             >
               <option value="">Select a book...</option>
               <optgroup label="Gospels">
@@ -168,38 +170,43 @@ function Navigation({
             </select>
           </div>
           
-          {/* Availability Status */}
+          {/* Elegant Availability Status */}
           {bibleData && (
-            <div className="flex items-center justify-center lg:justify-start space-x-2 text-sm text-gray-600">
-              <span>{Object.keys(bibleData.books || {}).length} of {NT_BOOKS.length} books available</span>
-              {Object.keys(bibleData.books || {}).length < NT_BOOKS.length && (
-                <AlertTriangle className="h-4 w-4 text-amber-500" />
-              )}
+            <div className="flex items-center justify-center lg:justify-start space-x-3">
+              <div className="bg-white/60 backdrop-blur-sm rounded-xl px-4 py-2 shadow-sm border border-white/40">
+                <div className="flex items-center space-x-2 text-sm font-medium text-gray-700">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <span>{Object.keys(bibleData.books || {}).length} of {NT_BOOKS.length} books</span>
+                  {Object.keys(bibleData.books || {}).length < NT_BOOKS.length && (
+                    <AlertTriangle className="h-4 w-4 text-amber-500" />
+                  )}
+                </div>
+              </div>
             </div>
           )}
           
-          {/* Chapter Navigation */}
+          {/* Elegant Chapter Navigation */}
           {currentBook && (
-            <div className="flex items-center justify-center lg:justify-start space-x-4">
+            <div className="flex items-center justify-center lg:justify-start space-x-3">
               <button
                 onClick={handlePrevChapter}
                 disabled={!canGoPrev}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md transition-colors ${
+                className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
                   canGoPrev
-                    ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                    : 'bg-gray-50 text-gray-400 cursor-not-allowed'
+                    ? 'bg-white/80 hover:bg-white text-gray-700 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm'
+                    : 'bg-gray-100/50 text-gray-400 cursor-not-allowed'
                 }`}
               >
                 <ChevronLeft className="h-4 w-4" />
                 <span className="text-sm">Previous</span>
               </button>
               
-              <div className="flex items-center space-x-2">
-                <span className="text-sm text-gray-600">Chapter</span>
+              <div className="flex items-center space-x-3 bg-white/80 backdrop-blur-sm rounded-xl px-4 py-3 shadow-lg">
+                <span className="text-sm font-medium text-gray-600">Chapter</span>
                 <select
                   value={currentChapter}
                   onChange={(e) => onChapterChange(parseInt(e.target.value))}
-                  className="border border-gray-300 rounded px-2 py-1 text-sm bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="border-0 bg-transparent text-lg font-bold text-gray-900 focus:ring-0 focus:outline-none cursor-pointer"
                 >
                   {availableChapters.map(num => (
                     <option key={num} value={num}>
@@ -207,16 +214,16 @@ function Navigation({
                     </option>
                   ))}
                 </select>
-                <span className="text-sm text-gray-400">of {availableChapters.length} available</span>
+                <span className="text-sm text-gray-500">of {availableChapters.length}</span>
               </div>
               
               <button
                 onClick={handleNextChapter}
                 disabled={!canGoNext}
-                className={`flex items-center space-x-1 px-3 py-2 rounded-md transition-colors ${
+                className={`flex items-center space-x-2 px-4 py-3 rounded-xl font-medium transition-all duration-200 ${
                   canGoNext
-                    ? 'bg-gray-100 hover:bg-gray-200 text-gray-700'
-                    : 'bg-gray-50 text-gray-400 cursor-not-allowed'
+                    ? 'bg-white/80 hover:bg-white text-gray-700 shadow-lg hover:shadow-xl hover:scale-105 backdrop-blur-sm'
+                    : 'bg-gray-100/50 text-gray-400 cursor-not-allowed'
                 }`}
               >
                 <span className="text-sm">Next</span>

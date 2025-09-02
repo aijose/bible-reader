@@ -110,25 +110,43 @@ function App() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center max-w-md">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-6"></div>
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
-            Bible Reader
-          </h2>
-          <p className="text-gray-600 mb-4">{loadingProgress.step}</p>
-          
-          {/* Progress Bar */}
-          <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
-            <div 
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300 ease-out"
-              style={{ width: `${loadingProgress.progress}%` }}
-            ></div>
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        {/* Animated background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+        </div>
+        
+        <div className="relative z-10 text-center max-w-md mx-4">
+          <div className="glass-effect p-8 rounded-2xl">
+            {/* Elegant spinner */}
+            <div className="relative mb-8">
+              <div className="w-16 h-16 mx-auto">
+                <div className="absolute inset-0 rounded-full border-4 border-gray-200"></div>
+                <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-500 border-r-purple-500 animate-spin"></div>
+              </div>
+            </div>
+            
+            <h2 className="text-2xl font-bold gradient-text mb-3">
+              Bible Reader
+            </h2>
+            <p className="text-gray-600 mb-6 font-medium">{loadingProgress.step}</p>
+            
+            {/* Elegant progress bar */}
+            <div className="w-full bg-gray-100 rounded-full h-3 mb-6 overflow-hidden">
+              <div 
+                className="h-full rounded-full transition-all duration-500 ease-out"
+                style={{ 
+                  width: `${loadingProgress.progress}%`,
+                  background: 'var(--gradient-primary)'
+                }}
+              ></div>
+            </div>
+            
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Preparing your spiritual study experience with commentary and semantic search...
+            </p>
           </div>
-          
-          <p className="text-gray-500 text-sm">
-            Setting up your Bible reading experience...
-          </p>
         </div>
       </div>
     );
@@ -136,21 +154,23 @@ function App() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="text-center max-w-md">
-          <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-            <div className="flex items-center justify-center w-12 h-12 bg-red-100 rounded-full mx-auto mb-4">
-              <svg className="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-red-50 via-orange-50 to-yellow-50"></div>
+        
+        <div className="relative z-10 text-center max-w-md mx-4">
+          <div className="glass-effect p-8 rounded-2xl border border-red-100">
+            <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-red-100 to-orange-100 rounded-full mx-auto mb-6">
+              <svg className="h-8 w-8 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
               </svg>
             </div>
-            <h2 className="text-lg font-semibold text-gray-900 mb-2">Unable to load Bible Reader</h2>
-            <p className="text-gray-600 text-sm mb-4">{error}</p>
+            <h2 className="text-xl font-bold text-gray-900 mb-3">Unable to load Bible Reader</h2>
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed">{error}</p>
             
-            <div className="space-y-2">
+            <div className="space-y-3">
               <button 
                 onClick={() => window.location.reload()}
-                className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors font-medium"
+                className="btn-primary w-full"
               >
                 Reload Application
               </button>
@@ -159,11 +179,11 @@ function App() {
                   clearCache();
                   window.location.reload();
                 }}
-                className="w-full px-4 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 transition-colors"
+                className="w-full px-4 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all duration-200 font-medium"
               >
                 Clear Cache & Reload
               </button>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-gray-500 leading-relaxed mt-4">
                 If this problem persists, ensure all data files are properly generated
               </p>
             </div>
@@ -174,32 +194,41 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <header className="bg-white shadow-sm border-b">
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-xl lg:text-2xl font-bold text-gray-900">
-                Bible Reader
-              </h1>
-              <p className="text-gray-600 text-xs lg:text-sm mt-1">
-                Select any verse to view commentary and related passages
-              </p>
-            </div>
-            
-            {/* Mobile sidebar indicator */}
-            {selectedVerse && (
-              <div className="lg:hidden">
-                <button
-                  onClick={() => setSidebarOpen(!sidebarOpen)}
-                  className="p-2 bg-blue-100 text-blue-700 rounded-lg"
-                >
-                  <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.001 8.001 0 01-7.716-6M3 12a9 9 0 019-9 9.057 9.057 0 016.716 3M12 9v3" />
-                  </svg>
-                </button>
+    <div className="min-h-screen relative">
+      {/* Beautiful gradient background */}
+      <div className="fixed inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 -z-10">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" style={{animationDelay: '2s'}}></div>
+      </div>
+
+      {/* Elegant header */}
+      <header className="relative z-10">
+        <div className="glass-effect border-b border-white/20">
+          <div className="max-w-7xl mx-auto px-4 py-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-2xl lg:text-4xl font-bold gradient-text mb-2">
+                  Bible Reader
+                </h1>
+                <p className="text-gray-600 text-sm lg:text-base font-medium">
+                  Discover Scripture with AI-powered commentary and semantic search
+                </p>
               </div>
-            )}
+              
+              {/* Elegant mobile sidebar indicator */}
+              {selectedVerse && (
+                <div className="lg:hidden">
+                  <button
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
+                    className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                  >
+                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.001 8.001 0 01-7.716-6M3 12a9 9 0 019-9 9.057 9.057 0 016.716 3M12 9v3" />
+                    </svg>
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -212,9 +241,9 @@ function App() {
         bibleData={bibleData}
       />
       
-      <main className="transition-all duration-300">
-        <div className="max-w-4xl mx-auto px-4 py-6">
-          <div className="bg-white rounded-lg shadow-sm p-6">
+      <main className="relative z-10 transition-all duration-300">
+        <div className="max-w-5xl mx-auto px-4 py-8">
+          <div className="card-elevated p-8 lg:p-12">
             <BibleReader
               book={currentBookData}
               chapter={currentChapter}
