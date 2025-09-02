@@ -133,12 +133,12 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
                   : 'hover:bg-white/60 hover:shadow-sm active:bg-white/80 py-2 px-2 rounded-xl'
               } transition-all duration-300 cursor-pointer select-text touch-manipulation`}
             >
-              <div className="flex items-start gap-6">
+              <div className="flex items-start">
                 <span className={`verse-number inline-flex items-center justify-center w-7 h-7 text-sm font-bold rounded-lg flex-shrink-0 transition-all duration-200 ${
                   isSelected 
                     ? 'bg-blue-500 text-white shadow-lg' 
                     : 'bg-gray-100 text-gray-600 group-hover:bg-blue-100 group-hover:text-blue-700'
-                }`}>
+                }`} style={{marginRight: '24px'}}>
                   {verseNum}
                 </span>
                 <span className="verse-text text-gray-900 font-serif text-base leading-relaxed flex-1">
