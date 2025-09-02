@@ -123,7 +123,8 @@ function Navigation({
                 backgroundSize: "20px",
                 padding: "20px 24px",
                 fontSize: "18px",
-                height: "64px"
+                height: "64px",
+                width: "50%"
               }}
             >
               <option value="">Select a book...</option>
