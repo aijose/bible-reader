@@ -72,22 +72,22 @@ function Commentary({ selectedVerse, commentaries, bibleData, isOpen, onClose, o
     <>
       {/* Elegant Full Width Commentary */}
       {isOpen && (
-      <div className="w-full bg-gradient-to-br from-slate-50 to-blue-50 border-t-4 border-gradient-to-r from-blue-500 to-purple-600 min-h-96 flex flex-col" style={{ width: '100vw', minWidth: '100vw' }}>
+      <div className="w-full bg-gradient-to-br from-slate-50 to-blue-50 border-t-4 border-gradient-to-r from-blue-500 to-purple-600 min-h-96 flex flex-col max-w-full overflow-hidden">
       
       {/* Beautiful Header */}
-      <div className="glass-effect border-b border-white/20 p-6 w-full">
-        <div className="flex items-center space-x-4 w-full">
+      <div className="glass-effect border-b border-white/20 p-6 w-full max-w-full">
+        <div className="flex items-center space-x-4 w-full max-w-full overflow-hidden">
           <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
             <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
             </svg>
           </div>
-          <div className="flex-1">
-            <h3 className="text-xl font-bold gradient-text">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-xl font-bold gradient-text truncate">
               Commentary & Insights
             </h3>
             {selectedVerse && (
-              <p className="text-sm text-gray-600 font-medium mt-1">
+              <p className="text-sm text-gray-600 font-medium mt-1 truncate">
                 {ragSystem.formatVerseReference(selectedVerse)}
               </p>
             )}
