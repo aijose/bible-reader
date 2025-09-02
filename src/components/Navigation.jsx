@@ -170,20 +170,6 @@ function Navigation({
             </select>
           </div>
           
-          {/* Elegant Availability Status */}
-          {bibleData && (
-            <div className="flex items-center justify-center lg:justify-start space-x-3">
-              <div className="bg-white/60 backdrop-blur-sm rounded-xl px-4 py-2 shadow-sm border border-white/40">
-                <div className="flex items-center space-x-2 text-sm font-medium text-gray-700">
-                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span>{Object.keys(bibleData.books || {}).length} of {NT_BOOKS.length} books</span>
-                  {Object.keys(bibleData.books || {}).length < NT_BOOKS.length && (
-                    <AlertTriangle className="h-4 w-4 text-amber-500" />
-                  )}
-                </div>
-              </div>
-            </div>
-          )}
           
           {/* Elegant Chapter Navigation */}
           {currentBook && (

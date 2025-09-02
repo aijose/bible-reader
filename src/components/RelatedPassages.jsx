@@ -20,7 +20,7 @@ function PassageCard({ passage, bibleData, onNavigate }) {
   const shouldShowFullText = verseText && verseText.length <= 200;
   
   return (
-    <div className="card-elevated p-4 hover:shadow-xl transition-all duration-300 cursor-pointer group hover:scale-[1.02]"
+    <div className="card-elevated p-4 hover:shadow-xl transition-shadow duration-300 cursor-pointer group passage-card"
          onClick={() => onNavigate(verseData.book, verseData.chapter)}>
       
       {/* Header */}
@@ -31,23 +31,23 @@ function PassageCard({ passage, bibleData, onNavigate }) {
           </div>
           <h4 className="font-bold text-gray-900 group-hover:text-blue-700 transition-colors">{reference}</h4>
         </div>
-        <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
+        <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors ml-2" />
       </div>
       
       {/* Connection type and similarity */}
-      <div className="flex items-center justify-between mb-3">
-        <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${connectionColor}`}>
-          <Tag className="h-3 w-3 mr-1" />
-          {connectionLabel}
-        </span>
-        <div className="flex items-center space-x-2">
-          <div className="w-16 bg-gray-200 rounded-full h-1.5">
-            <div 
-              className="bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 rounded-full transition-all duration-300"
-              style={{ width: `${Math.min(100, passage.score * 100)}%` }}
-            ></div>
-          </div>
-          <span className="text-xs font-medium text-gray-600">{(passage.score * 100).toFixed(0)}%</span>
+      <div className="mb-3">
+        <div className="flex items-center space-x-3 mb-2">
+          <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${connectionColor}`}>
+            <Tag className="h-3 w-3 mr-1" />
+            {connectionLabel}
+          </span>
+          <span className="text-xs font-medium text-gray-600">{(passage.score * 100).toFixed(0)}% similarity</span>
+        </div>
+        <div className="w-full bg-gray-200 rounded-full h-1.5">
+          <div 
+            className="bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 rounded-full transition-all duration-300"
+            style={{ width: `${Math.min(100, passage.score * 100)}%` }}
+          ></div>
         </div>
       </div>
       

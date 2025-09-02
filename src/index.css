@@ -122,6 +122,10 @@
     transform: translateX(2px);
   }
   
+  .passage-card:hover {
+    transform: none;
+  }
+  
   /* Enhanced focus states */
   select:focus,
   button:focus {
