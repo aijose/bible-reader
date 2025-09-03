@@ -52,6 +52,14 @@ Development guides and processes
 - **Luke**: No chapters (API rate limited)
 - **John-Revelation**: 24 books pending (API rate limits)
 
+## Screenshots
+
+### Main Bible Reading Interface
+![Bible Reader Chapter View](images/bible_reader_chapter.png)
+
+### Commentary and Related Passages
+![Commentary and Related Passages](images/bible_reader_commentary_and_related_passages.png)
+
 ### Quick Start
 ```bash
 npm run dev    # Start at http://localhost:3001
