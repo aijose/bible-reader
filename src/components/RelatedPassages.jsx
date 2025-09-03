@@ -8,8 +8,8 @@ function PassageCard({ passage, bibleData, onNavigate }) {
 
   const bookData = bibleData?.books?.[verseData.book];
   
-  // Skip if we don't have this book's data
-  if (!bookData) return null;
+  // Skip if we don't have this book's data or if it has no verses
+  if (!bookData || !bookData.metadata || bookData.metadata.verses === 0) return null;
   
   const verseText = bookData?.chapters?.[verseData.chapter]?.[verseData.verse];
   
