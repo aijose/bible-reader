@@ -16,13 +16,11 @@ function PassageCard({ passage, bibleData, onNavigate }) {
   const reference = useMemo(() => ragSystem.formatVerseReference(passage.verse), [passage.verse]);
   const connectionLabel = useMemo(() => ragSystem.getConnectionTypeLabel(passage.type), [passage.type]);
   const connectionColor = useMemo(() => ragSystem.getConnectionColor(passage.type), [passage.type]);
-  
-  const shouldShowFullText = verseText && verseText.length <= 200;
-  
+
   return (
     <div className="card-elevated p-4 hover:shadow-xl transition-shadow duration-300 cursor-pointer group passage-card"
          onClick={() => onNavigate(verseData.book, verseData.chapter)}>
-      
+
       {/* Header */}
       <div className="flex items-center space-x-3 mb-3">
         <div className="w-8 h-8 bg-gradient-to-br from-green-100 to-emerald-100 rounded-lg flex items-center justify-center">
@@ -31,7 +29,7 @@ function PassageCard({ passage, bibleData, onNavigate }) {
         <h4 className="font-bold text-gray-900 group-hover:text-blue-700 transition-colors flex-1">{reference}</h4>
         <ExternalLink className="h-4 w-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
       </div>
-      
+
       {/* Connection type and similarity */}
       <div className="mb-3">
         <div className="flex items-center space-x-3 mb-2">
@@ -42,21 +40,17 @@ function PassageCard({ passage, bibleData, onNavigate }) {
           <span className="text-xs font-medium text-gray-600">({(passage.score * 100).toFixed(0)}%)</span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-1.5">
-          <div 
+          <div
             className="bg-gradient-to-r from-blue-500 to-purple-600 h-1.5 rounded-full transition-all duration-300"
             style={{ width: `${Math.min(100, passage.score * 100)}%` }}
           ></div>
         </div>
       </div>
-      
-      {/* Verse text */}
+
+      {/* Verse text - Always show full verse */}
       {verseText && (
         <div className="text-gray-700 font-serif leading-relaxed">
-          {shouldShowFullText ? (
-            <p className="text-sm italic">"{verseText}"</p>
-          ) : (
-            <p className="text-sm text-gray-500 group-hover:text-gray-700 transition-colors">Click to view full verse</p>
-          )}
+          <p className="text-sm italic">"{verseText}"</p>
         </div>
       )}
     </div>
