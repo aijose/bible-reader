@@ -21,3 +21,7 @@ __pycache__/
 
 # Data sources (not tracked)
 data-sources/
+
+# Test files
+performance_test.js
+real_performance_test.cjs
