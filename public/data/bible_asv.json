@@ -3,7 +3,7 @@
     "version": "American Standard Version",
     "scope": "New Testament",
     "total_books": 27,
-    "total_verses": 7144
+    "total_verses": 7217
   },
   "books": {
     "matthew": {
@@ -6603,11 +6603,35 @@
         "name": "Philemon",
         "genre": "epistle",
         "chapters": 1,
-        "verses": 1
+        "verses": 25
       },
       "chapters": {
         "1": {
-          "1": "Paul, a prisoner of Christ Jesus, and Timothy our brother, to Philemon our beloved and fellow-worker,"
+          "1": "Paul, a prisoner of Christ Jesus, and Timothy our brother, to Philemon our beloved and fellow-worker,",
+          "2": "and to Apphia our sister, and to Archippus our fellow-soldier, and to the church in thy house:",
+          "3": "Grace to you and peace from God our Father and the Lord Jesus Christ.",
+          "4": "I thank my God always, making mention of thee in my prayers,",
+          "5": "hearing of thy love, and of the faith which thou hast toward the Lord Jesus, and toward all the saints;",
+          "6": "that the fellowship of thy faith may become effectual, in the knowledge of every good thing which is in you, unto Christ.",
+          "7": "For I had much joy and comfort in thy love, because the hearts of the saints have been refreshed through thee, brother.",
+          "8": "Wherefore, though I have all boldness in Christ to enjoin thee that which is befitting,",
+          "9": "yet for love`s sake I rather beseech, being such a one as Paul the aged, and now a prisoner also of Christ Jesus:",
+          "10": "I beseech thee for my child, whom I have begotten in my bonds, Onesimus,",
+          "11": "who once was unprofitable to thee, but now is profitable to thee and to me:",
+          "12": "whom I have sent back to thee in his own person, that is, my very heart:",
+          "13": "whom I would fain have kept with me, that in thy behalf he might minister unto me in the bonds of the gospel:",
+          "14": "but without thy mind I would do nothing; that thy goodness should not be as of necessity, but of free will.",
+          "15": "For perhaps he was therefore parted [from thee] for a season, that thou shouldest have him for ever;",
+          "16": "no longer as a servant, but more than a servant, a brother beloved, specially to me, but how much rather to thee, both in the flesh and in the Lord.",
+          "17": "If then thou countest me a partner, receive him as myself.",
+          "18": "But if he hath wronged the at all, or oweth [thee] aught, put that to mine account;",
+          "19": "I Paul write it with mine own hand, I will repay it: that I say not unto thee that thou owest to me even thine own self besides.",
+          "20": "Yea, brother, let me have joy of thee in the Lord: refresh my heart in Christ.",
+          "21": "Having confidence in thine obedience I write unto thee, knowing that thou wilt do even beyond what I say.",
+          "22": "But withal prepare me also a lodging: for I hope that through your prayers I shall be granted unto you.",
+          "23": "Epaphras, my fellow-prisoner in Christ Jesus, saluteth thee;",
+          "24": "[and so do] Mark, Aristarchus, Demas, Luke, my fellow-workers.",
+          "25": "The grace of our Lord Jesus Christ be with your spirit. Amen."
         }
       }
     },
@@ -7410,11 +7434,23 @@
         "name": "2 John",
         "genre": "epistle",
         "chapters": 1,
-        "verses": 1
+        "verses": 13
       },
       "chapters": {
         "1": {
-          "1": "The elder unto the elect lady and her children, whom I love in truth; and not I only, but also all they that know the truth;"
+          "1": "The elder unto the elect lady and her children, whom I love in truth; and not I only, but also all they that know the truth;",
+          "2": "for the truth`s sake which abideth in us, and it shall be with us for ever:",
+          "3": "Grace, mercy, peace shall be with us, from God the Father, and from Jesus Christ, the Son of the Father, in truth and love.",
+          "4": "I rejoice greatly that I have found [certain] of thy children walking in truth, even as we received commandment from the Father.",
+          "5": "And now I beseech thee, lady, not as though I wrote to thee a new commandment, but that which we had from the beginning, that we love one another.",
+          "6": "And this is love, that we should walk after his commandments. This is the commandment, even as ye heard from the beginning, that ye should walk in it.",
+          "7": "For many deceivers are gone forth into the world, [even] they that confess not that Jesus Christ cometh in the flesh. This is the deceiver and the antichrist.",
+          "8": "Look to yourselves, that ye lose not the things which we have wrought, but that ye receive a full reward.",
+          "9": "Whosoever goeth onward and abideth not in the teaching of Christ, hath not God: he that abideth in the teaching, the same hath both the Father and the Son.",
+          "10": "If any one cometh unto you, and bringeth not this teaching, receive him not into [your] house, and give him no greeting:",
+          "11": "for he that giveth him greeting partaketh in his evil works.",
+          "12": "Having many things to write unto you, I would not [write them] with paper and ink: but I hope to come unto you, and to speak face to face, that your joy may be made full.",
+          "13": "The children of thine elect sister salute thee."
         }
       }
     },
@@ -7423,11 +7459,24 @@
         "name": "3 John",
         "genre": "epistle",
         "chapters": 1,
-        "verses": 1
+        "verses": 14
       },
       "chapters": {
         "1": {
-          "1": "The elder unto Gaius the beloved, whom I love in truth."
+          "1": "The elder unto Gaius the beloved, whom I love in truth.",
+          "2": "Beloved, I pray that in all things thou mayest prosper and be in health, even as thy soul prospereth.",
+          "3": "For I rejoiced greatly, when brethren came and bare witness unto thy truth, even as thou walkest in truth.",
+          "4": "Greater joy have I none than this, to hear of my children walking in the truth.",
+          "5": "Beloved, thou doest a faithful work in whatsoever thou doest toward them that are brethren and strangers withal;",
+          "6": "who bare witness to thy love before the church: whom thou wilt do well to set forward on their journey worthily of God:",
+          "7": "because that for the sake of the Name they went forth, taking nothing of the Gentiles.",
+          "8": "We therefore ought to welcome such, that we may be fellow-workers for the truth.",
+          "9": "I wrote somewhat unto the church: but Diotrephes, who loveth to have the preeminence among them, receiveth us not.",
+          "10": "Therefore, if I come, I will bring to remembrance his works which he doeth, prating against us with wicked words: and not content therewith, neither doth he himself receive the brethren, and them that would he forbiddeth and casteth [them] out of the church.",
+          "11": "Beloved, imitate not that which is evil, but that which is good. He that doeth good is of God: he that doeth evil hath not seen God.",
+          "12": "Demetrius hath the witness of all [men], and of the truth itself: yea, we also bear witness: and thou knowest that our witness is true.",
+          "13": "I had many things to write unto thee, but I am unwilling to write [them] to thee with ink and pen:",
+          "14": "but I hope shortly to see thee, and we shall speak face to face. Peace [be] unto thee. The friends salute thee. Salute the friends by name."
         }
       }
     },
@@ -7436,11 +7485,35 @@
         "name": "Jude",
         "genre": "epistle",
         "chapters": 1,
-        "verses": 1
+        "verses": 25
       },
       "chapters": {
         "1": {
-          "1": "Jude, a servant of Jesus Christ, and brother of James, to them that are called, beloved in God the Father, and kept for Jesus Christ:"
+          "1": "Jude, a servant of Jesus Christ, and brother of James, to them that are called, beloved in God the Father, and kept for Jesus Christ:",
+          "2": "Mercy unto you and peace and love be multiplied.",
+          "3": "Beloved, while I was giving all diligence to write unto you of our common salvation, I was constrained to write unto you exhorting you to contend earnestly for the faith which was once for all delivered unto the saints.",
+          "4": "For there are certain men crept in privily, [even] they who were of old written of beforehand unto this condemnation, ungodly men, turning the grace of our God into lasciviousness, and denying our only Master and Lord, Jesus Christ.",
+          "5": "Now I desire to put you in remembrance, though ye know all things once for all, that the Lord, having saved a people out of the land of Egypt, afterward destroyed them that believed not.",
+          "6": "And angels that kept not their own principality, but left their proper habitation, he hath kept in everlasting bonds under darkness unto the judgment of the great day.",
+          "7": "Even as Sodom and Gomorrah, and the cities about them, having in like manner with these given themselves over to fornication and gone after strange flesh, are set forth as an example, suffering the punishment of eternal fire.",
+          "8": "Yet in like manner these also in their dreamings defile the flesh, and set at nought dominion, and rail at dignities.",
+          "9": "But Michael the archangel, when contending with the devil he disputed about the body of Moses, durst not bring against him a railing judgment, but said, The Lord rebuke thee.",
+          "10": "But these rail at whatsoever things they know not: and what they understand naturally, like the creatures without reason, in these things are they destroyed.",
+          "11": "Woe unto them! For they went in the way of Cain, and ran riotously in the error of Balaam for hire, and perished in the gainsaying of Korah.",
+          "12": "These are they who are hidden rocks in your love-feasts when they feast with you, shepherds that without fear feed themselves; clouds without water, carried along by winds; autumn leaves without fruit, twice dead, plucked up by the roots;",
+          "13": "Wild waves of the sea, foaming out their own shame; wandering stars, for whom the blackness of darkness hath been reserved forever.",
+          "14": "And to these also Enoch, the seventh from Adam, prophesied, saying, Behold, the Lord came with ten thousands of his holy ones,",
+          "15": "to execute judgment upon all, and to convict all the ungodly of all their works of ungodliness which they have ungodly wrought, and of all the hard things which ungodly sinners have spoken against him.",
+          "16": "These are murmurers, complainers, walking after their lusts (and their mouth speaketh great swelling [words]), showing respect of persons for the sake of advantage.",
+          "17": "But ye, beloved, remember ye the words which have been spoken before by the apostles of our Lord Jesus Christ;",
+          "18": "That they said to you, In the last time there shall be mockers, walking after their own ungodly lusts.",
+          "19": "These are they who make separations, sensual, having not the Spirit.",
+          "20": "But ye, beloved, building up yourselves on your most holy faith, praying in the Holy Spirit,",
+          "21": "keep yourselves in the love of God, looking for the mercy of our Lord Jesus Christ unto eternal life.",
+          "22": "And on some have mercy, who are in doubt;",
+          "23": "and some save, snatching them out of the fire; and on some have mercy with fear; hating even the garment spotted by the flesh.",
+          "24": "Now unto him that is able to guard you from stumbling, and to set you before the presence of his glory without blemish in exceeding joy,",
+          "25": "to the only God our Saviour, through Jesus Christ our Lord, [be] glory, majesty, dominion and power, before all time, and now, and for evermore. Amen."
         }
       }
     },
