@@ -199,14 +199,22 @@ class RAGSystem {
 
   parseVerseId(verseId) {
     const parts = verseId.split('_');
-    if (parts.length >= 3) {
-      return {
-        book: parts[0],
-        chapter: parseInt(parts[1]),
-        verse: parseInt(parts[2])
-      };
+    if (parts.length < 3) return null;
+
+    // Handle books with numbers (e.g., "1_thessalonians", "2_john")
+    // Last two parts are always chapter and verse
+    const verse = parseInt(parts[parts.length - 1]);
+    const chapter = parseInt(parts[parts.length - 2]);
+
+    // Everything before the last two parts is the book name
+    const book = parts.slice(0, parts.length - 2).join('_');
+
+    // Validate that chapter and verse are valid numbers
+    if (isNaN(chapter) || isNaN(verse)) {
+      return null;
     }
-    return null;
+
+    return { book, chapter, verse };
   }
 
   formatVerseReference(verseId) {
