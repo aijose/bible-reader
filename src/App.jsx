@@ -224,36 +224,20 @@ function App() {
                 </p>
               </div>
 
-              {/* Help button - Desktop & Mobile */}
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => {
-                    setHelpOpen(true);
-                    setSidebarOpen(false); // Close commentary when opening help
-                    setSelectedVerse(null); // Deselect verse
-                  }}
-                  className="flex items-center gap-1.5 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-all duration-200 text-sm font-medium whitespace-nowrap"
-                >
-                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>Help</span>
-                </button>
-
-                {/* Commentary indicator - Mobile */}
-                {selectedVerse && (
-                  <div className="lg:hidden">
-                    <button
-                      onClick={() => setSidebarOpen(!sidebarOpen)}
-                      className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-                    >
-                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.001 8.001 0 01-7.716-6M3 12a9 9 0 019-9 9.057 9.057 0 016.716 3M12 9v3" />
-                      </svg>
-                    </button>
-                  </div>
-                )}
-              </div>
+              {/* Help button */}
+              <button
+                onClick={() => {
+                  setHelpOpen(true);
+                  setSidebarOpen(false); // Close commentary when opening help
+                  setSelectedVerse(null); // Deselect verse
+                }}
+                className="flex items-center gap-1.5 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-all duration-200 text-sm font-medium whitespace-nowrap"
+              >
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>Help</span>
+              </button>
             </div>
           </div>
         </div>
