@@ -153,12 +153,7 @@ function BibleReader({ book, chapter, onVerseSelect, selectedVerse }) {
       {/* Elegant footer */}
       <div className="mt-12 pt-8 border-t border-gray-200">
         <div className="text-center">
-          <div className="inline-flex items-center space-x-4 bg-white/60 backdrop-blur-sm rounded-xl px-6 py-3 shadow-sm">
-            <div className="flex items-center space-x-2 text-sm text-gray-600">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <span className="font-medium">Click any verse for commentary & insights</span>
-            </div>
-            <div className="h-4 w-px bg-gray-300"></div>
+          <div className="inline-flex items-center bg-white/60 backdrop-blur-sm rounded-xl px-6 py-3 shadow-sm">
             <span className="text-xs text-gray-500 font-medium">American Standard Version (1901)</span>
           </div>
         </div>
