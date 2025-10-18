@@ -212,6 +212,9 @@ function App() {
                 </h1>
                 <p className="text-gray-600 text-sm lg:text-base font-medium">
                   Discover Scripture with AI-powered commentary and semantic search
+                  <span className="block text-xs lg:text-sm text-gray-500 mt-1 italic">
+                    Click any verse to view commentary and related passages
+                  </span>
                 </p>
               </div>
               
