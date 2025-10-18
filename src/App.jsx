@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import BibleReader from './components/BibleReader';
 import Commentary from './components/Commentary';
+import Help from './components/Help';
 import { loadBibleData, loadCommentaries, clearCache } from './utils/dataLoader';
 import ragSystem from './utils/ragSystem';
 
@@ -12,6 +13,7 @@ function App() {
   const [currentChapter, setCurrentChapter] = useState(1);
   const [selectedVerse, setSelectedVerse] = useState(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [helpOpen, setHelpOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [loadingProgress, setLoadingProgress] = useState({ step: '', progress: 0 });
@@ -73,6 +75,7 @@ function App() {
     console.log('🎯 Verse selected:', verseId);
     setSelectedVerse(verseId);
     setSidebarOpen(true);
+    setHelpOpen(false); // Close help when selecting a verse
   };
 
   const handleBookChange = (bookKey) => {
@@ -205,8 +208,8 @@ function App() {
       <header className="relative z-10">
         <div className="glass-effect border-b border-white/20">
           <div className="max-w-7xl mx-auto px-4 py-6">
-            <div className="flex items-center justify-between">
-              <div>
+            <div className="flex items-start justify-between gap-4">
+              <div className="flex-1">
                 <h1 className="text-2xl lg:text-4xl font-bold gradient-text mb-2">
                   Bible Reader
                 </h1>
@@ -220,20 +223,37 @@ function App() {
                   Click any verse to view commentary and related passages
                 </p>
               </div>
-              
-              {/* Elegant mobile sidebar indicator */}
-              {selectedVerse && (
-                <div className="lg:hidden">
-                  <button
-                    onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
-                  >
-                    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.001 8.001 0 01-7.716-6M3 12a9 9 0 019-9 9.057 9.057 0 016.716 3M12 9v3" />
-                    </svg>
-                  </button>
-                </div>
-              )}
+
+              {/* Help button - Desktop & Mobile */}
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => {
+                    setHelpOpen(true);
+                    setSidebarOpen(false); // Close commentary when opening help
+                    setSelectedVerse(null); // Deselect verse
+                  }}
+                  className="flex items-center gap-1.5 px-3 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-all duration-200 text-sm font-medium whitespace-nowrap"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>Help</span>
+                </button>
+
+                {/* Commentary indicator - Mobile */}
+                {selectedVerse && (
+                  <div className="lg:hidden">
+                    <button
+                      onClick={() => setSidebarOpen(!sidebarOpen)}
+                      className="p-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 hover:scale-105"
+                    >
+                      <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-3.582 8-8 8a8.001 8.001 0 01-7.716-6M3 12a9 9 0 019-9 9.057 9.057 0 016.716 3M12 9v3" />
+                      </svg>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -267,6 +287,11 @@ function App() {
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         onNavigate={handleNavigateToVerse}
+      />
+
+      <Help
+        isOpen={helpOpen}
+        onClose={() => setHelpOpen(false)}
       />
     </div>
   );
